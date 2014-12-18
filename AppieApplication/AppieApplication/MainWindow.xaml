@@ -1,8 +1,14 @@
 ﻿<Window x:Class="AppieApplication.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525"
+        DataContext="{Binding Main, Source={StaticResource Locator}}">
     <Grid>
-        
+        <Button Command="{Binding ShowProductsWindowCommand}" Margin="10,10,10,264">Show Products</Button>
+        <Button Margin="10,60,10,214">Show Shopping List</Button>
+        <Button Margin="10,160,10,114">Show Discounts</Button>
+        <Button Margin="10,110,10,164">Show Recepts</Button>
+
+
     </Grid>
 </Window>
