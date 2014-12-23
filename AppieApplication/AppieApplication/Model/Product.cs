@@ -10,6 +10,14 @@ namespace AppieApplication.Model
     public class Product
     {
 
+        private List<Discount> discountList;
+
+        public Product()
+        {
+            discountList = new List<Discount>();
+        }
+
+
         [Key]
         public int Id { get; set; }
         [Required]
