@@ -23,8 +23,7 @@ namespace AppieApplication.ViewModel
         public ProductListViewModel()
         {
 
-            repo = new DummyRepository();
-
+            repo = new ProductRepository();
             var productList = repo.GetAll().Select(p => new ProductViewModel(p));
             Products = new ObservableCollection<ProductViewModel>(productList);
 

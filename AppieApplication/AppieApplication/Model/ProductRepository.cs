@@ -9,9 +9,16 @@ namespace AppieApplication.Model
     public class ProductRepository : IRepository
     {
 
+        private DBcontext context;
+
+        public ProductRepository()
+        {
+            context = new DBcontext();
+        }
+
         public List<Product> GetAll()
         {
-            return new List<Product>(); // producten toevoegen
+            return context.Products.ToList();
         }
 
         public Product Get(int id)

@@ -76,6 +76,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DBcontext.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Discount.cs" />
     <Compile Include="Model\Recipe.cs" />
     <Compile Include="Model\ShoppingList.cs" />
