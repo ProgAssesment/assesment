@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 
 namespace AppieApplication.Model
 {
-    public class ShoppingList
+    public class Catagory
     {
 
-        public ShoppingList()
+        public Catagory()
         {
-            Products = new HashSet<Brand>();
+            Products = new HashSet<Product>();
         }
 
         [Key]
         public int Id { get; set; }
+        [Required]
+        public String Name { get; set; }
 
-        public int Times { get; set; }
-
-        public virtual ICollection<Brand> Products { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
 
     }
 }

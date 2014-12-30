@@ -8,24 +8,24 @@ namespace AppieApplication.ViewModel
     public class WindowsViewModel : ViewModelBase
     {
 
-        private ProductsWindow productsWindow;
+        private CatagoryWindow catagoryWindow;
 
-        public ICommand ShowProductsWindowCommand { get; set; }
+        public ICommand ShowCatagoriesWindowCommand { get; set; }
 
         public WindowsViewModel()
         {
-            productsWindow = new ProductsWindow();
-            ShowProductsWindowCommand = new RelayCommand(showProductsWindow, canShowProductsWindow);
+            catagoryWindow = new CatagoryWindow();
+            ShowCatagoriesWindowCommand = new RelayCommand(showCatagoriesWindow, canShowCatagoriesWindow);
         }
 
-        private bool canShowProductsWindow()
+        private bool canShowCatagoriesWindow()
         {
-            return productsWindow.IsVisible == false;
+            return catagoryWindow.IsVisible == false;
         }
 
-        private void showProductsWindow()
+        private void showCatagoriesWindow()
         {
-            productsWindow.Show();
+            catagoryWindow.Show();
         }
 
     }

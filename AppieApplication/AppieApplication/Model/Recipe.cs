@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,27 +9,21 @@ namespace AppieApplication.Model
 {
     public class Recipe
     {
-        private List<Product> productList;
 
         public Recipe()
         {
-            productList = new List<Product>();
+
+            Products = new HashSet<Brand>();
+
         }
+
+        [Key]
+        public int id { get; set; }
 
         public string Name { get; set; }
-        public string Merk { get; set; }
-
-        public void AddProduct(Product product)
-        {
-            productList.Add(product);
-        }
-
-        public void RemoveProduct(Product product)
-        {
-            productList.Remove(product);
-        }
 
 
+        public virtual ICollection<Brand> Products { get; set; }
 
     }
 }

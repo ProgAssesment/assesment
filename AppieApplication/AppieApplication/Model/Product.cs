@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,24 +11,20 @@ namespace AppieApplication.Model
     public class Product
     {
 
-        private List<Discount> discountList;
-
         public Product()
         {
-            discountList = new List<Discount>();
+            Brands = new HashSet<Brand>();
         }
-
 
         [Key]
         public int Id { get; set; }
-        [Required]
-        public String Type { get; set; }
+        public int CatagoryId { get; set; }
+        [ForeignKey("CatagoryId")]
+        public virtual Catagory Catagory { get; set; }
         [Required]
         public String Name { get; set; }
-        [Required]
-        public String Brand { get; set; }
-        [Required]
-        public double Price { get; set; }
 
+
+        public virtual ICollection<Brand> Brands { get; set; }
     }
 }
