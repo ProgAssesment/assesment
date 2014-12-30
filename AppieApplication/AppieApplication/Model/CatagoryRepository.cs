@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 
 namespace AppieApplication.Model
 {
-    public class ProductRepository : IProductRepository
+    public class CatagoryRepository : ICatagoryRepository
     {
 
         private DBcontext context;
 
-        public ProductRepository()
+        public CatagoryRepository()
         {
-            context = new DBcontext();
+            this.context = new DBcontext(); 
         }
 
-        public List<Product> GetAll()
+        public List<Catagory> GetAll()
         {
-            return context.Products.ToList();
+            return context.Catagories.ToList();
         }
 
-        public Product Get(int id)
+        public Catagory Get(int id)
         {
             throw new NotImplementedException();
         }
@@ -31,12 +31,12 @@ namespace AppieApplication.Model
             throw new NotImplementedException();
         }
 
-        public Product Create(Product product)
+        public Catagory Create(Catagory catagory)
         {
             throw new NotImplementedException();
         }
 
-        public Product Edit(Product product)
+        public Catagory Edit(Catagory catagory)
         {
             throw new NotImplementedException();
         }

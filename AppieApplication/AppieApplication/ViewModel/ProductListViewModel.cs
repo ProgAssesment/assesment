@@ -12,7 +12,7 @@ namespace AppieApplication.ViewModel
     public class ProductListViewModel : ViewModelBase
     {
 
-        private IRepository repo;
+        private IProductRepository repo;
 
         private ProductViewModel selectedProduct;
 

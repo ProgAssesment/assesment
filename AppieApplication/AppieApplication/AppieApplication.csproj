@@ -82,12 +82,16 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Brand.cs" />
     <Compile Include="Model\Catagory.cs" />
+    <Compile Include="Model\CatagoryRepository.cs" />
+    <Compile Include="Model\CatagoryViewModel.cs" />
     <Compile Include="Model\Discount.cs" />
+    <Compile Include="Model\ICatagoryRepository.cs" />
     <Compile Include="Model\Recipe.cs" />
     <Compile Include="Model\ShoppingList.cs" />
     <Compile Include="ProductsWindow.xaml.cs">
       <DependentUpon>ProductsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\CatagoryListViewModel.cs" />
     <Compile Include="ViewModel\WindowsViewModel.cs" />
     <Compile Include="ViewModel\ProductListViewModel.cs" />
     <Compile Include="ViewModel\ProductViewModel.cs" />
@@ -115,7 +119,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\ProductRepository.cs" />
-    <Compile Include="Model\IRepository.cs" />
+    <Compile Include="Model\IProductRepository.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

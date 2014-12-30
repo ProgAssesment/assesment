@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AppieApplication.Model
 {
-    public interface IRepository
+    public interface IProductRepository
     {
         List<Product> GetAll();
         Product Get(int id);

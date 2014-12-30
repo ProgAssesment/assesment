@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AppieApplication
 {
-    class DBcontext : DbContext
+    public class DBcontext : DbContext
     {
         public DbSet<Product> Products { get; set; }
 
@@ -18,7 +18,9 @@ namespace AppieApplication
 
         public DbSet<ShoppingList> ShoppingLists { get; set; }
 
+        public DbSet<Catagory> Catagories { get; set; }
 
+        public DbSet<Brand> Brands { get; set; }
 
     }
 }
