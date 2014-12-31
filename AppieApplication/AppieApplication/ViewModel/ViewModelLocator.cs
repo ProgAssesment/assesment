@@ -31,6 +31,7 @@ namespace AppieApplication.ViewModel
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             SimpleIoc.Default.Register<ProductListViewModel>();
+            SimpleIoc.Default.Register<CatagoryListViewModel>();
             SimpleIoc.Default.Register<WindowsViewModel>();
         }
 
@@ -43,6 +44,7 @@ namespace AppieApplication.ViewModel
         }
 
         public ProductListViewModel ProductListViewModel { get { return ServiceLocator.Current.GetInstance<ProductListViewModel>(); } }
+        public CatagoryListViewModel CatagoryListViewModel { get { return ServiceLocator.Current.GetInstance<CatagoryListViewModel>(); } }
 
 
         public static void Cleanup()

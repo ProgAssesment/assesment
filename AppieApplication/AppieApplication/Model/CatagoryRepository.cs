@@ -26,19 +26,26 @@ namespace AppieApplication.Model
             throw new NotImplementedException();
         }
 
+        public Catagory GetByName(String name)
+        {
+            return context.Catagories.Where(x => x.Name.Equals(name)).First();
+        }
+
         public void Delete(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Catagory Create(Catagory catagory)
+        public void Create(Catagory catagory)
         {
-            throw new NotImplementedException();
+            context.Catagories.Add(catagory);
+            context.SaveChanges();
         }
 
-        public Catagory Edit(Catagory catagory)
+        public void Edit(Catagory catagory)
         {
             throw new NotImplementedException();
         }
+        
     }
 }

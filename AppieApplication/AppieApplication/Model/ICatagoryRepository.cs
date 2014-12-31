@@ -10,9 +10,10 @@ namespace AppieApplication.Model
     {
         List<Catagory> GetAll();
         Catagory Get(int id);
+        Catagory GetByName(String name);
         void Delete(int id);
-        Catagory Create(Catagory catagory);
-        Catagory Edit(Catagory catagory);
+        void Create(Catagory catagory);
+        void Edit(Catagory catagory);
 
     }
 }
