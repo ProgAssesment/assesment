@@ -1,6 +1,7 @@
 ﻿using AppieApplication.Model;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -33,7 +34,7 @@ namespace AppieApplication.ViewModel
             repo = new CatagoryRepository();
             var catagoryList = repo.GetAll().Select(c => new CatagoryViewModel(c));
             Catagories = new ObservableCollection<CatagoryViewModel>(catagoryList);
-
+            productsWindow = new ProductsWindow();
             AddCatagoryCommand = new RelayCommand(AddCatagory, CanAddCatagory);
             OpenProductsWindowCommand = new RelayCommand(OpenProductsWindow, CanOpenProductsWindow);
         }
@@ -41,7 +42,7 @@ namespace AppieApplication.ViewModel
         public bool CanOpenProductsWindow()
         {
 
-            if (selectedCatagory != null || productsWindow.IsVisible == false)
+            if (selectedCatagory != null)
             {
                 return true;
             }
@@ -51,11 +52,11 @@ namespace AppieApplication.ViewModel
 
         public void OpenProductsWindow()
         {
-            productsWindow = new ProductsWindow();
+            Messenger.Default.Send(new NotificationMessage<int>(SelectedCatagory.Id, "token"));
             productsWindow.Show();
         }
 
-        //Wat moet hier komen?
+        //Code toevoegen
         public bool CanAddCatagory()
         {
             return true;
@@ -66,6 +67,8 @@ namespace AppieApplication.ViewModel
 
             CatagoryViewModel cvm = new CatagoryViewModel();
             cvm.Name = SelectedCatagory.Name;
+
+            selectedCatagory = new CatagoryViewModel();
 
             Catagory c = new Catagory();
             c.Name = cvm.Name;

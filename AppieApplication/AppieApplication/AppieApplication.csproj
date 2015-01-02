@@ -86,6 +86,7 @@
     <Compile Include="Model\CatagoryViewModel.cs" />
     <Compile Include="Model\Discount.cs" />
     <Compile Include="Model\ICatagoryRepository.cs" />
+    <Compile Include="Model\MessageCommunicator.cs" />
     <Compile Include="Model\Recipe.cs" />
     <Compile Include="Model\ShoppingList.cs" />
     <Compile Include="ProductsWindow.xaml.cs">

@@ -24,10 +24,10 @@
             </Grid.RowDefinitions>
 
             <TextBlock Text="Id:" Grid.Column="0" Grid.Row="0" />
-            <TextBox MaxLength="5" Grid.Column="1" Grid.Row="0" Text="{Binding Path=SelectedCatagory.Id, Mode=OneWay}" />
+            <TextBox MaxLength="5" Grid.Column="1" Grid.Row="0" Text="{Binding Path=SelectedCatagory.Id, Mode=TwoWay}" />
 
             <TextBlock Text="Name:" Grid.Column="0" Grid.Row="2" />
-            <TextBox MaxLength="50" Grid.Column="1" Grid.Row="2"  Text="{Binding Path=SelectedCatagory.Name, Mode=OneWay}" />
+            <TextBox MaxLength="50" Grid.Column="1" Grid.Row="2"  Text="{Binding Path=SelectedCatagory.Name, Mode=TwoWay}" />
 
         </Grid>
         <Button Content="Add" Command="{Binding AddCatagoryCommand}" HorizontalAlignment="Left" Margin="24,119,0,0" VerticalAlignment="Top" Width="75"/>
