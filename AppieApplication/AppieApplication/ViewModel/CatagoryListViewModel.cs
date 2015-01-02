@@ -15,6 +15,7 @@ namespace AppieApplication.ViewModel
     public class CatagoryListViewModel : ViewModelBase
     {
 
+        private ProductsWindow productsWindow;
         private ICatagoryRepository repo;
 
         private CatagoryViewModel selectedCatagory;
@@ -25,6 +26,8 @@ namespace AppieApplication.ViewModel
 
         public ICommand AddCatagoryCommand { get; set; }
 
+        public ICommand OpenProductsWindowCommand { get; set; }
+
         public CatagoryListViewModel()
         {
             repo = new CatagoryRepository();
@@ -32,6 +35,24 @@ namespace AppieApplication.ViewModel
             Catagories = new ObservableCollection<CatagoryViewModel>(catagoryList);
 
             AddCatagoryCommand = new RelayCommand(AddCatagory, CanAddCatagory);
+            OpenProductsWindowCommand = new RelayCommand(OpenProductsWindow, CanOpenProductsWindow);
+        }
+
+        public bool CanOpenProductsWindow()
+        {
+
+            if (selectedCatagory != null || productsWindow.IsVisible == false)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public void OpenProductsWindow()
+        {
+            productsWindow = new ProductsWindow();
+            productsWindow.Show();
         }
 
         //Wat moet hier komen?

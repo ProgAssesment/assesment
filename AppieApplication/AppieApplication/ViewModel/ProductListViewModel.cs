@@ -20,11 +20,11 @@ namespace AppieApplication.ViewModel
 
         public ObservableCollection<ProductViewModel> Products { get; set; }
 
-        public ProductListViewModel()
+        public ProductListViewModel(Catagory catagory)
         {
 
             repo = new ProductRepository();
-            var productList = repo.GetAll().Select(p => new ProductViewModel(p));
+            var productList = repo.GetAll().Where(x => x.CatagoryId.Equals(catagory.Id)).Select(p => new ProductViewModel(p));
             Products = new ObservableCollection<ProductViewModel>(productList);
 
         }
