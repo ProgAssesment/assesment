@@ -1,6 +1,7 @@
 ﻿using AppieApplication.Model;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,6 +16,7 @@ namespace AppieApplication.ViewModel
     public class CatagoryListViewModel : ViewModelBase
     {
 
+        private ProductsWindow productsWindow;
         private ICatagoryRepository repo;
 
         private CatagoryViewModel selectedCatagory;
@@ -25,16 +27,40 @@ namespace AppieApplication.ViewModel
 
         public ICommand AddCatagoryCommand { get; set; }
 
+        public ICommand DeleteCatagoryCommand { get; set; }
+
+        public ICommand OpenProductsWindowCommand { get; set; }
+
         public CatagoryListViewModel()
         {
             repo = new CatagoryRepository();
             var catagoryList = repo.GetAll().Select(c => new CatagoryViewModel(c));
             Catagories = new ObservableCollection<CatagoryViewModel>(catagoryList);
 
+            productsWindow = new ProductsWindow();
             AddCatagoryCommand = new RelayCommand(AddCatagory, CanAddCatagory);
+            DeleteCatagoryCommand = new RelayCommand(DeleteCatagory, CanDeleteCatagory);
+            OpenProductsWindowCommand = new RelayCommand(OpenProductsWindow, CanOpenProductsWindow);
         }
 
-        //Wat moet hier komen?
+        public bool CanOpenProductsWindow()
+        {
+
+            if (selectedCatagory != null)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public void OpenProductsWindow()
+        {
+            Messenger.Default.Send(new NotificationMessage<int>(SelectedCatagory.Id, "catagory"));
+            productsWindow.Show();
+        }
+
+        //Code toevoegen
         public bool CanAddCatagory()
         {
             return true;
@@ -46,6 +72,8 @@ namespace AppieApplication.ViewModel
             CatagoryViewModel cvm = new CatagoryViewModel();
             cvm.Name = SelectedCatagory.Name;
 
+            selectedCatagory = new CatagoryViewModel();
+
             Catagory c = new Catagory();
             c.Name = cvm.Name;
 
@@ -54,6 +82,25 @@ namespace AppieApplication.ViewModel
             cvm.Id = repo.GetByName(c.Name).Id;
 
             Catagories.Add(cvm);
+        }
+
+        //kortere if
+        public bool CanDeleteCatagory()
+        {
+            if (SelectedCatagory != null)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public void DeleteCatagory()
+        {
+            Catagory c = repo.Get(selectedCatagory.Id);
+            repo.Delete(c);
+            Catagories.Remove(selectedCatagory);
+            SelectedCatagory = new CatagoryViewModel();
         }
 
     }
