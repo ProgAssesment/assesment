@@ -29,6 +29,7 @@ namespace AppieApplication.ViewModel
         public ObservableCollection<ProductViewModel> Products { get { return products; } set { products = value; RaisePropertyChanged(); } }
 
         public ICommand OpenBrandsWindowCommand { get; set; }
+        public ICommand DeleteSelecetedProductCommand { get; set; }
 
         public ProductListViewModel()
         {
@@ -39,6 +40,7 @@ namespace AppieApplication.ViewModel
 
             brandWindow = new BrandWindow();
             OpenBrandsWindowCommand = new RelayCommand(OpenBrandsWindow, CanOpenBrandsWindow);
+            DeleteSelecetedProductCommand = new RelayCommand(DeleteProduct, CanDeleteProduct);
 
         }
 
@@ -57,6 +59,20 @@ namespace AppieApplication.ViewModel
             brandWindow = new BrandWindow();
             Messenger.Default.Send(new NotificationMessage<int>(SelectedProduct.Id, "product"));
             brandWindow.Show();
+        }
+
+        public bool CanDeleteProduct()
+        {
+            return SelectedProduct != null;
+        }
+
+        public void DeleteProduct()
+        {
+            Product p = repo.Get(selectedProduct.Id);
+            repo.Delete(p);
+            products.Remove(selectedProduct);
+            SelectedProduct = new ProductViewModel();
+
         }
 
         private void OnHitIt(NotificationMessage<int> m)

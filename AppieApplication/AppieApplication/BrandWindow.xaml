@@ -14,7 +14,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Grid Margin="0,0,0,25" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+        <Grid Margin="0,0,0,50" HorizontalAlignment="Center" VerticalAlignment="Bottom">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100" />
                 <ColumnDefinition Width="200" />
@@ -33,8 +33,10 @@
 
             <TextBlock Text="Price:" Grid.Column="0" Grid.Row="2" />
             <TextBox MaxLength="50" Grid.Column="1" Grid.Row="2"  Text="{Binding Path=SelectedBrand.Price, Mode=TwoWay}" />
-            
+
         </Grid>
+
+        <Button Content="Delete" Command="{Binding DeleteSelectedBrandCommand}"  Width="75" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10"/>
 
     </Grid>
 </Window>

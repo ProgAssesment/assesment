@@ -23,7 +23,7 @@ namespace AppieApplication.Model
 
         public Brand Get(int id)
         {
-            throw new NotImplementedException();
+            return context.Brands.Where(x => x.id.Equals(id)).First();
         }
 
         public Brand GetByName(string name)
@@ -31,9 +31,9 @@ namespace AppieApplication.Model
             throw new NotImplementedException();
         }
 
-        public void Delete(int id)
+        public void Delete(Brand brand)
         {
-            throw new NotImplementedException();
+            context.Brands.Remove(brand);
         }
 
         public void Create(Brand brand)

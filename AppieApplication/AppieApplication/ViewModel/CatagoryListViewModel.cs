@@ -19,11 +19,15 @@ namespace AppieApplication.ViewModel
         private ProductsWindow productsWindow;
         private ICatagoryRepository repo;
 
+        private String catagoryName;
+
         private CatagoryViewModel selectedCatagory;
 
         public CatagoryViewModel SelectedCatagory { get { return selectedCatagory; } set { selectedCatagory = value; RaisePropertyChanged(); } }
 
         public ObservableCollection<CatagoryViewModel> Catagories { get; set; }
+
+        public String CatagoryName { get { return catagoryName; } set { catagoryName = value; RaisePropertyChanged(); } }
 
         public ICommand AddCatagoryCommand { get; set; }
 
@@ -71,9 +75,7 @@ namespace AppieApplication.ViewModel
         {
 
             CatagoryViewModel cvm = new CatagoryViewModel();
-            cvm.Name = SelectedCatagory.Name;
-
-            selectedCatagory = new CatagoryViewModel();
+            cvm.Name = catagoryName;
 
             Catagory c = new Catagory();
             c.Name = cvm.Name;
