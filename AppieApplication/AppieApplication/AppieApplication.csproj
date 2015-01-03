@@ -90,23 +90,17 @@
     <Compile Include="Model\BrandRepository.cs" />
     <Compile Include="Model\Catagory.cs" />
     <Compile Include="Model\CatagoryRepository.cs" />
-<<<<<<< HEAD
     <Compile Include="Model\DummyRecipeRepository.cs" />
-=======
     <Compile Include="Model\IBrandRepository.cs" />
     <Compile Include="ViewModel\BrandListViewModel.cs" />
     <Compile Include="ViewModel\BrandViewModel.cs" />
->>>>>>> 2c2e055b0db9ef5d414b4dd8149db52246b0baa3
     <Compile Include="ViewModel\CatagoryViewModel.cs" />
     <Compile Include="Model\Discount.cs" />
     <Compile Include="Model\DiscountRepository.cs" />
     <Compile Include="Model\ICatagoryRepository.cs" />
-<<<<<<< HEAD
     <Compile Include="Model\IDiscountRepository.cs" />
     <Compile Include="Model\IRecipeRepository.cs" />
-=======
     <Compile Include="Model\MessageCommunicator.cs" />
->>>>>>> 2c2e055b0db9ef5d414b4dd8149db52246b0baa3
     <Compile Include="Model\Recipe.cs" />
     <Compile Include="Model\RecipeRepository.cs" />
     <Compile Include="Model\ShoppingList.cs" />
