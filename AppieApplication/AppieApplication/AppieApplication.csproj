@@ -75,15 +75,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BrandWindow.xaml.cs">
+      <DependentUpon>BrandWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CatagoryWindow.xaml.cs">
       <DependentUpon>CatagoryWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="DBcontext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Brand.cs" />
+    <Compile Include="Model\BrandRepository.cs" />
     <Compile Include="Model\Catagory.cs" />
     <Compile Include="Model\CatagoryRepository.cs" />
-    <Compile Include="Model\CatagoryViewModel.cs" />
+    <Compile Include="Model\IBrandRepository.cs" />
+    <Compile Include="ViewModel\BrandListViewModel.cs" />
+    <Compile Include="ViewModel\BrandViewModel.cs" />
+    <Compile Include="ViewModel\CatagoryViewModel.cs" />
     <Compile Include="Model\Discount.cs" />
     <Compile Include="Model\ICatagoryRepository.cs" />
     <Compile Include="Model\MessageCommunicator.cs" />
@@ -97,6 +104,10 @@
     <Compile Include="ViewModel\ProductListViewModel.cs" />
     <Compile Include="ViewModel\ProductViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Page Include="BrandWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CatagoryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

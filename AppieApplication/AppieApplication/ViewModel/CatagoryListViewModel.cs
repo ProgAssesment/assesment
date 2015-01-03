@@ -34,6 +34,7 @@ namespace AppieApplication.ViewModel
             repo = new CatagoryRepository();
             var catagoryList = repo.GetAll().Select(c => new CatagoryViewModel(c));
             Catagories = new ObservableCollection<CatagoryViewModel>(catagoryList);
+
             productsWindow = new ProductsWindow();
             AddCatagoryCommand = new RelayCommand(AddCatagory, CanAddCatagory);
             OpenProductsWindowCommand = new RelayCommand(OpenProductsWindow, CanOpenProductsWindow);
@@ -52,7 +53,7 @@ namespace AppieApplication.ViewModel
 
         public void OpenProductsWindow()
         {
-            Messenger.Default.Send(new NotificationMessage<int>(SelectedCatagory.Id, "token"));
+            Messenger.Default.Send(new NotificationMessage<int>(SelectedCatagory.Id, "catagory"));
             productsWindow.Show();
         }
 

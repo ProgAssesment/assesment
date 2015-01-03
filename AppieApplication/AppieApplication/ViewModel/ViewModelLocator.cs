@@ -15,6 +15,7 @@ namespace AppieApplication.ViewModel
 
             SimpleIoc.Default.Register<ProductListViewModel>();
             SimpleIoc.Default.Register<CatagoryListViewModel>();
+            SimpleIoc.Default.Register<BrandListViewModel>();
             SimpleIoc.Default.Register<WindowsViewModel>();
         }
 
@@ -28,6 +29,7 @@ namespace AppieApplication.ViewModel
 
         public ProductListViewModel ProductListViewModel { get { return ServiceLocator.Current.GetInstance<ProductListViewModel>(); } }
         public CatagoryListViewModel CatagoryListViewModel { get { return ServiceLocator.Current.GetInstance<CatagoryListViewModel>(); } }
+        public BrandListViewModel BrandListViewModel { get { return ServiceLocator.Current.GetInstance<BrandListViewModel>(); } }
 
 
         public static void Cleanup()
