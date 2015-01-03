@@ -33,7 +33,23 @@ namespace AppieApplication.Model
 
         public void Delete(Catagory catagory)
         {
+
+            List<Product> products = context.Products.Where(x => x.CatagoryId.Equals(catagory.Id)).ToList();
+            
             context.Catagories.Remove(catagory);
+
+            foreach (Product p in products)
+            {
+                List<Brand> brands = context.Brands.Where(x => x.ProductId.Equals(p.Id)).ToList();
+
+                foreach (Brand b in brands)
+                {
+                    context.Brands.Remove(b);
+                }
+
+                context.Products.Remove(p);
+            }
+
             context.SaveChanges();
         }
 

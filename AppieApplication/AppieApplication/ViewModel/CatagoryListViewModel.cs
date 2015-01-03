@@ -56,6 +56,7 @@ namespace AppieApplication.ViewModel
 
         public void OpenProductsWindow()
         {
+            productsWindow = new ProductsWindow();
             Messenger.Default.Send(new NotificationMessage<int>(SelectedCatagory.Id, "catagory"));
             productsWindow.Show();
         }

@@ -41,6 +41,7 @@ namespace AppieApplication.ViewModel
 
         private void showCatagoriesWindow()
         {
+            catagoryWindow = new CatagoryWindow();
             catagoryWindow.Show();
         }
 

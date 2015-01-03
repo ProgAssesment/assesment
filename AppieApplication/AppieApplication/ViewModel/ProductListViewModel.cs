@@ -54,6 +54,7 @@ namespace AppieApplication.ViewModel
 
         public void OpenBrandsWindow()
         {
+            brandWindow = new BrandWindow();
             Messenger.Default.Send(new NotificationMessage<int>(SelectedProduct.Id, "product"));
             brandWindow.Show();
         }
