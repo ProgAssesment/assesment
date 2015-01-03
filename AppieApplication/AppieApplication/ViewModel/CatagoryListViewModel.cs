@@ -27,6 +27,8 @@ namespace AppieApplication.ViewModel
 
         public ICommand AddCatagoryCommand { get; set; }
 
+        public ICommand DeleteCatagoryCommand { get; set; }
+
         public ICommand OpenProductsWindowCommand { get; set; }
 
         public CatagoryListViewModel()
@@ -37,6 +39,7 @@ namespace AppieApplication.ViewModel
 
             productsWindow = new ProductsWindow();
             AddCatagoryCommand = new RelayCommand(AddCatagory, CanAddCatagory);
+            DeleteCatagoryCommand = new RelayCommand(DeleteCatagory, CanDeleteCatagory);
             OpenProductsWindowCommand = new RelayCommand(OpenProductsWindow, CanOpenProductsWindow);
         }
 
@@ -79,6 +82,25 @@ namespace AppieApplication.ViewModel
             cvm.Id = repo.GetByName(c.Name).Id;
 
             Catagories.Add(cvm);
+        }
+
+        //kortere if
+        public bool CanDeleteCatagory()
+        {
+            if (SelectedCatagory != null)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public void DeleteCatagory()
+        {
+            Catagory c = repo.Get(selectedCatagory.Id);
+            repo.Delete(c);
+            Catagories.Remove(selectedCatagory);
+            SelectedCatagory = new CatagoryViewModel();
         }
 
     }

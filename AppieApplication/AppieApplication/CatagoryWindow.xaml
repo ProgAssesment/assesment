@@ -32,7 +32,7 @@
         </Grid>
         <Button Content="Add" Command="{Binding AddCatagoryCommand}" HorizontalAlignment="Left" Margin="24,119,0,0" VerticalAlignment="Top" Width="75"/>
         <Button Content="Edit" HorizontalAlignment="Left" Margin="104,119,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Delete" HorizontalAlignment="Left" Margin="184,119,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Delete" Command="{Binding DeleteCatagoryCommand}" HorizontalAlignment="Left" Margin="184,119,0,0" VerticalAlignment="Top" Width="75"/>
         <Button Content="Products" Command="{Binding OpenProductsWindowCommand}" HorizontalAlignment="Left" Margin="264,119,0,0" VerticalAlignment="Top" Width="75"/>
 
     </Grid>

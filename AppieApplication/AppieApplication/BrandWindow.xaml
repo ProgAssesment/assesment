@@ -9,6 +9,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Price}"/>
 
             </DataGrid.Columns>
         </DataGrid>
@@ -21,13 +22,14 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="25" />
                 <RowDefinition Height="25" />
+                <RowDefinition Height="25" />
             </Grid.RowDefinitions>
 
             <TextBlock Text="Id:" Grid.Column="0" Grid.Row="0" />
             <TextBox MaxLength="5" Grid.Column="1" Grid.Row="0" Text="{Binding Path=SelectedBrand.Id, Mode=TwoWay}" />
 
-            <TextBlock Text="Name:" Grid.Column="0" Grid.Row="2" />
-            <TextBox MaxLength="50" Grid.Column="1" Grid.Row="2"  Text="{Binding Path=SelectedBrand.Name, Mode=TwoWay}" />
+            <TextBlock Text="Name:" Grid.Column="0" Grid.Row="1" />
+            <TextBox MaxLength="50" Grid.Column="1" Grid.Row="1"  Text="{Binding Path=SelectedBrand.Name, Mode=TwoWay}" />
 
             <TextBlock Text="Price:" Grid.Column="0" Grid.Row="2" />
             <TextBox MaxLength="50" Grid.Column="1" Grid.Row="2"  Text="{Binding Path=SelectedBrand.Price, Mode=TwoWay}" />

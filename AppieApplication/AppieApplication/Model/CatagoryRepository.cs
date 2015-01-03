@@ -23,7 +23,7 @@ namespace AppieApplication.Model
 
         public Catagory Get(int id)
         {
-            throw new NotImplementedException();
+            return context.Catagories.Where(x => x.Id.Equals(id)).First();
         }
 
         public Catagory GetByName(String name)
@@ -31,9 +31,10 @@ namespace AppieApplication.Model
             return context.Catagories.Where(x => x.Name.Equals(name)).First();
         }
 
-        public void Delete(int id)
+        public void Delete(Catagory catagory)
         {
-            throw new NotImplementedException();
+            context.Catagories.Remove(catagory);
+            context.SaveChanges();
         }
 
         public void Create(Catagory catagory)
