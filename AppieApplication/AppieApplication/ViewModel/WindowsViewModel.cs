@@ -9,13 +9,29 @@ namespace AppieApplication.ViewModel
     {
 
         private CatagoryWindow catagoryWindow;
+        private RecipesWindow recipesWindow;
+
+
+        //for testing
+        private DiscountsWindow discountsWindow;
+        public ICommand ShowDiscountsWindowCommand { get; set; }
 
         public ICommand ShowCatagoriesWindowCommand { get; set; }
+        public ICommand ShowRecipesWindowCommand { get; set; }
+
 
         public WindowsViewModel()
         {
             catagoryWindow = new CatagoryWindow();
+            recipesWindow = new RecipesWindow();
+
+            //for testing
+            discountsWindow = new DiscountsWindow();
+            ShowDiscountsWindowCommand = new RelayCommand(showDiscountsWindow, canShowDiscountsWindow);
+
             ShowCatagoriesWindowCommand = new RelayCommand(showCatagoriesWindow, canShowCatagoriesWindow);
+            ShowRecipesWindowCommand = new RelayCommand(showRecipesWindow, canShowRecipesWindow);
+
         }
 
         private bool canShowCatagoriesWindow()
@@ -26,6 +42,26 @@ namespace AppieApplication.ViewModel
         private void showCatagoriesWindow()
         {
             catagoryWindow.Show();
+        }
+
+        private bool canShowRecipesWindow()
+        {
+            return recipesWindow.IsVisible == false;
+        }
+
+        private void showRecipesWindow()
+        {
+            recipesWindow.Show();
+        }
+
+        //for testing
+        private bool canShowDiscountsWindow()
+        {
+            return discountsWindow.IsVisible == false;
+        }
+        private void showDiscountsWindow()
+        {
+            discountsWindow.Show();
         }
 
     }

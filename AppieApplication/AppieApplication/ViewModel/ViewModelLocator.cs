@@ -32,6 +32,8 @@ namespace AppieApplication.ViewModel
 
             SimpleIoc.Default.Register<ProductListViewModel>();
             SimpleIoc.Default.Register<CatagoryListViewModel>();
+            SimpleIoc.Default.Register<DiscountListViewModel>();
+            SimpleIoc.Default.Register<RecipeListViewModel>();
             SimpleIoc.Default.Register<WindowsViewModel>();
         }
 
@@ -45,6 +47,8 @@ namespace AppieApplication.ViewModel
 
         public ProductListViewModel ProductListViewModel { get { return ServiceLocator.Current.GetInstance<ProductListViewModel>(); } }
         public CatagoryListViewModel CatagoryListViewModel { get { return ServiceLocator.Current.GetInstance<CatagoryListViewModel>(); } }
+        public DiscountListViewModel DiscountListViewModel { get { return ServiceLocator.Current.GetInstance<DiscountListViewModel>(); } }
+        public RecipeListViewModel RecipeListViewModel { get { return ServiceLocator.Current.GetInstance<RecipeListViewModel>(); } }
 
 
         public static void Cleanup()

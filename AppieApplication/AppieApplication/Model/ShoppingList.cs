@@ -18,8 +18,6 @@ namespace AppieApplication.Model
         [Key]
         public int Id { get; set; }
 
-        public int Times { get; set; }
-
         public virtual ICollection<Brand> Products { get; set; }
 
     }

@@ -79,24 +79,43 @@
       <DependentUpon>CatagoryWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="DBcontext.cs" />
+    <Compile Include="DiscountsWindow.xaml.cs">
+      <DependentUpon>DiscountsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Brand.cs" />
     <Compile Include="Model\Catagory.cs" />
     <Compile Include="Model\CatagoryRepository.cs" />
-    <Compile Include="Model\CatagoryViewModel.cs" />
+    <Compile Include="Model\DummyRecipeRepository.cs" />
+    <Compile Include="ViewModel\CatagoryViewModel.cs" />
     <Compile Include="Model\Discount.cs" />
+    <Compile Include="Model\DiscountRepository.cs" />
     <Compile Include="Model\ICatagoryRepository.cs" />
+    <Compile Include="Model\IDiscountRepository.cs" />
+    <Compile Include="Model\IRecipeRepository.cs" />
     <Compile Include="Model\Recipe.cs" />
+    <Compile Include="Model\RecipeRepository.cs" />
     <Compile Include="Model\ShoppingList.cs" />
     <Compile Include="ProductsWindow.xaml.cs">
       <DependentUpon>ProductsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RecipesWindow.xaml.cs">
+      <DependentUpon>RecipesWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\CatagoryListViewModel.cs" />
+    <Compile Include="ViewModel\DiscountListViewModel.cs" />
+    <Compile Include="ViewModel\DiscountViewModel.cs" />
+    <Compile Include="ViewModel\RecipeListViewModel.cs" />
+    <Compile Include="ViewModel\RecipeViewModel.cs" />
     <Compile Include="ViewModel\WindowsViewModel.cs" />
     <Compile Include="ViewModel\ProductListViewModel.cs" />
     <Compile Include="ViewModel\ProductViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="CatagoryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DiscountsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -113,6 +132,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ProductsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RecipesWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
