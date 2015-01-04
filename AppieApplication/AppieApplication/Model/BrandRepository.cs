@@ -26,9 +26,9 @@ namespace AppieApplication.Model
             return context.Brands.Where(x => x.id.Equals(id)).First();
         }
 
-        public Brand GetByName(string name)
+        public Brand GetByName(String name)
         {
-            throw new NotImplementedException();
+            return context.Brands.Where(x => x.Name.Equals(name)).First();
         }
 
         public void Delete(Brand brand)

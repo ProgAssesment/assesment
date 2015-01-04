@@ -22,11 +22,22 @@ namespace AppieApplication.ViewModel
 
         private ObservableCollection<BrandViewModel> brands;
 
+        private String brandName;
+
+        private double brandPrice;
+
+        private int productId;
+
+        public String BrandName { get { return brandName; } set { brandName = value; RaisePropertyChanged(); } }
+
+        public double BrandPrice { get { return brandPrice; } set { brandPrice = value; RaisePropertyChanged(); } }
+
         public BrandViewModel SelectedBrand { get { return selectedBrand; } set { selectedBrand = value; RaisePropertyChanged(); } }
 
         public ObservableCollection<BrandViewModel> Brands { get { return brands; } set { brands = value; RaisePropertyChanged(); } }
 
         public ICommand DeleteSelectedBrandCommand { get; set; }
+        public ICommand AddBrandCommand { get; set; }
 
         public BrandListViewModel()
         {
@@ -36,6 +47,31 @@ namespace AppieApplication.ViewModel
             Messenger.Default.Register<NotificationMessage<int>>(this, OnHitIt);
 
             DeleteSelectedBrandCommand = new RelayCommand(DeleteSelectedBrand, CanDeleteSelectedBrand);
+            AddBrandCommand = new RelayCommand(AddBrand, CanAddBrand);
+        }
+
+        public bool CanAddBrand()
+        {
+            return brandName != null && brandPrice != 0;
+        }
+
+        public void AddBrand()
+        {
+
+            BrandViewModel bvm = new BrandViewModel();
+            bvm.Name = brandName;
+            bvm.Price = brandPrice;
+
+            Brand b = new Brand();
+            b.Name = bvm.Name;
+            b.ProductId = productId;
+            b.Price = bvm.Price;
+
+            repo.Create(b);
+            bvm.Id = repo.GetByName(b.Name).id;
+
+            Brands.Add(bvm);
+
         }
 
         public bool CanDeleteSelectedBrand()
@@ -58,13 +94,9 @@ namespace AppieApplication.ViewModel
         {
             if (m.Notification == "product")
             {
-                Debug.WriteLine("MESSAGE: " + m.Content);
-                //.Where(x => x.ProductId.Equals(m.Content))
                 var brandList = repo.GetAll().Select(b => new BrandViewModel(b));
-                Debug.WriteLine("CONTENT:  " + brandList.ElementAt(0).Name);
                 Brands = new ObservableCollection<BrandViewModel>(brandList);
-
-                Debug.WriteLine("CONTENT2:  " + Brands.ElementAt(0).Name);
+                productId = m.Content;
             }
         }
     }
