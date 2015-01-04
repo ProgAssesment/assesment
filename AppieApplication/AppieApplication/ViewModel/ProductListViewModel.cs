@@ -24,12 +24,19 @@ namespace AppieApplication.ViewModel
 
         private ObservableCollection<ProductViewModel> products;
 
+        private int catagoryId;
+
+        private String productName;
+
+        public String ProductName { get { return productName; } set { productName = value; RaisePropertyChanged(); } }
+
         public ProductViewModel SelectedProduct { get { return selectedProduct; } set { selectedProduct = value; RaisePropertyChanged(); } }
 
         public ObservableCollection<ProductViewModel> Products { get { return products; } set { products = value; RaisePropertyChanged(); } }
 
         public ICommand OpenBrandsWindowCommand { get; set; }
         public ICommand DeleteSelecetedProductCommand { get; set; }
+        public ICommand AddProductCommand { get; set; }
 
         public ProductListViewModel()
         {
@@ -41,6 +48,7 @@ namespace AppieApplication.ViewModel
             brandWindow = new BrandWindow();
             OpenBrandsWindowCommand = new RelayCommand(OpenBrandsWindow, CanOpenBrandsWindow);
             DeleteSelecetedProductCommand = new RelayCommand(DeleteProduct, CanDeleteProduct);
+            AddProductCommand = new RelayCommand(AddProduct, CanAddProduct);
 
         }
 
@@ -59,6 +67,26 @@ namespace AppieApplication.ViewModel
             brandWindow = new BrandWindow();
             Messenger.Default.Send(new NotificationMessage<int>(SelectedProduct.Id, "product"));
             brandWindow.Show();
+        }
+
+        public bool CanAddProduct()
+        {
+            return productName != null;
+        }
+
+        public void AddProduct()
+        {
+            ProductViewModel pvm = new ProductViewModel();
+            pvm.Name = productName;
+
+            Product p = new Product();
+            p.Name = pvm.Name;
+            p.CatagoryId = catagoryId;
+
+            repo.Create(p);
+            pvm.Id = repo.GetByName(p.Name).Id;
+
+            Products.Add(pvm);
         }
 
         public bool CanDeleteProduct()
@@ -81,6 +109,7 @@ namespace AppieApplication.ViewModel
             {
                 var productList = repo.GetAll().Where(x => x.CatagoryId.Equals(m.Content)).Select(p => new ProductViewModel(p));
                 Products = new ObservableCollection<ProductViewModel>(productList);
+                catagoryId = m.Content;
             }
         }
 

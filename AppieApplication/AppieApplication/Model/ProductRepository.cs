@@ -42,14 +42,20 @@ namespace AppieApplication.Model
 
         }
 
-        public Product Create(Product product)
+        public void Create(Product product)
         {
-            throw new NotImplementedException();
+            context.Products.Add(product);
+            context.SaveChanges();
         }
 
         public Product Edit(Product product)
         {
             throw new NotImplementedException();
+        }
+
+        public Product GetByName(String name)
+        {
+            return context.Products.Where(x => x.Name.Equals(name)).First();
         }
     }
 }

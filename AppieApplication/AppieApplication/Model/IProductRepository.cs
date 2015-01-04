@@ -11,7 +11,8 @@ namespace AppieApplication.Model
         List<Product> GetAll();
         Product Get(int id);
         void Delete(Product proudct);
-        Product Create(Product product);
+        void Create(Product product);
         Product Edit(Product product);
+        Product GetByName(String name);
     }
 }

@@ -68,7 +68,7 @@ namespace AppieApplication.ViewModel
         //Code toevoegen
         public bool CanAddCatagory()
         {
-            return true;
+            return catagoryName != null;
         }
 
         public void AddCatagory()
@@ -81,7 +81,6 @@ namespace AppieApplication.ViewModel
             c.Name = cvm.Name;
 
             repo.Create(c);
-
             cvm.Id = repo.GetByName(c.Name).Id;
 
             Catagories.Add(cvm);
