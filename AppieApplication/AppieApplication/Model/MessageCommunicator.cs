@@ -11,6 +11,8 @@ namespace AppieApplication.Model
     {
 
         public Catagory Catagory { get; set; }
+        public Recipe recipe { get; set; }
+
 
     }
 }

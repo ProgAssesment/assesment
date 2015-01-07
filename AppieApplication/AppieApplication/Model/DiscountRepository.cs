@@ -8,7 +8,7 @@ namespace AppieApplication.Model
 {
     class DiscountRepository : IDiscountRepository
     {
-        
+
         private DBcontext context;
 
         public DiscountRepository()
@@ -26,9 +26,9 @@ namespace AppieApplication.Model
             return context.Discounts.Where(x => x.Coupon.Equals(id)).First();
         }
 
-        public void Delete(int id)
+        public void Delete(Discount discount)
         {
-            context.Discounts.Remove(Get(id));
+            context.Discounts.Remove(discount);
             context.SaveChanges();
         }
 
@@ -37,10 +37,22 @@ namespace AppieApplication.Model
             context.Discounts.Add(discount);
             context.SaveChanges();
         }
-        
+
         public void Edit(Discount discount)
         {
-            throw new NotImplementedException();
+            if (discount == null)
+                return;
+
+            var originalDiscount = context.Discounts.SingleOrDefault(i => i.Coupon == discount.Coupon);
+
+            if (originalDiscount == null)
+                return;
+
+            originalDiscount.StartDate = discount.StartDate;
+            originalDiscount.EndDate = discount.EndDate;
+            originalDiscount.Coupon = discount.Coupon;
+
+            context.SaveChanges();
         }
     }
 }

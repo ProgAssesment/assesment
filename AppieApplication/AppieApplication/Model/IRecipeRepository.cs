@@ -10,7 +10,8 @@ namespace AppieApplication.Model
     {
         List<Recipe> GetAll();
         Recipe Get(int id);
-        void Delete(int id);
+        Recipe GetByName(String name);
+        void Delete(Recipe recipe);
         void Create(Recipe recipe);
         void Edit(Recipe recipe);
 

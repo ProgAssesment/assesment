@@ -21,7 +21,7 @@ namespace AppieApplication.Model
         [Required]
         public String Name { get; set; }
         [Required]
-        public int Price { get; set; }
+        public double Price { get; set; }
         
         public int ProductId { get; set; }
 

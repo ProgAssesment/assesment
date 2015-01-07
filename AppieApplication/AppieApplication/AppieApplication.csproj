@@ -90,7 +90,6 @@
     <Compile Include="Model\BrandRepository.cs" />
     <Compile Include="Model\Catagory.cs" />
     <Compile Include="Model\CatagoryRepository.cs" />
-    <Compile Include="Model\DummyRecipeRepository.cs" />
     <Compile Include="Model\IBrandRepository.cs" />
     <Compile Include="ViewModel\BrandListViewModel.cs" />
     <Compile Include="ViewModel\BrandViewModel.cs" />

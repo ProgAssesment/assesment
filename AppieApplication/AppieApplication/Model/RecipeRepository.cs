@@ -26,9 +26,14 @@ namespace AppieApplication.Model
             return context.Recipes.Where(x => x.id.Equals(id)).First();
         }
 
-        public void Delete(int id)
+        public Recipe GetByName(String name)
         {
-            context.Recipes.Remove(Get(id));
+            return context.Recipes.Where(x => x.Name.Equals(name)).First();
+        }
+
+        public void Delete(Recipe recipe)
+        {
+            context.Recipes.Remove(recipe);
             context.SaveChanges();
         }
 

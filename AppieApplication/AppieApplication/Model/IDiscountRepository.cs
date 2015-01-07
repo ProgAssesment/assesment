@@ -10,7 +10,7 @@ namespace AppieApplication.Model
     {
         List<Discount> GetAll();
         Discount Get(int id);
-        void Delete(int id);
+        void Delete(Discount discount);
         void Create(Discount discount);
         void Edit(Discount discount);
     }
