@@ -14,6 +14,12 @@ namespace AppieApplication.ViewModel
     public class DiscountListViewModel : ViewModelBase
     {
         private IDiscountRepository repo;
+        private IBrandRepository repoBrand;
+
+        private int _inputBrandId;
+
+        public int InputBrandId { get { return _inputBrandId; } set { _inputBrandId = value; RaisePropertyChanged(); } }
+
 
         private DiscountViewModel _selectedDiscount;
 
@@ -42,6 +48,8 @@ namespace AppieApplication.ViewModel
         {
 
             repo = new DiscountRepository();
+            repoBrand = new BrandRepository();
+
             var discountList = repo.GetAll().Select(d => new DiscountViewModel(d));
             Discounts = new ObservableCollection<DiscountViewModel>(discountList);
 
@@ -57,17 +65,18 @@ namespace AppieApplication.ViewModel
         {
 
             DiscountViewModel dvm = new DiscountViewModel();
-
             dvm.StartDate = InputDiscountStartDate;
             dvm.EndDate = InputDiscountEndDate;
-
+            int idBrand = InputBrandId;
+            
             Discount d = new Discount();
             d.StartDate = dvm.StartDate;
             d.EndDate = dvm.EndDate;
-
+            d.BrandId = idBrand;
             repo.Create(d);
 
-        //    rvm.Id = repo.GetByName(r.Name).id;
+            idBrand = repoBrand.GetByName(repoBrand.Get(idBrand).Name).id;
+
 
             Discounts.Add(dvm);
 

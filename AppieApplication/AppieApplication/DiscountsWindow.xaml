@@ -39,7 +39,6 @@
             </Grid>
             <Button Content="Edit" Command="{Binding UpdateDiscountCommand}" HorizontalAlignment="Left" Margin="25,200,0,0" VerticalAlignment="Top" Width="75"/>
             <Button Content="Delete" Command="{Binding DeleteDiscountCommand}" HorizontalAlignment="Left" Margin="105,200,0,0" VerticalAlignment="Top" Width="75"/>
-            <Button Content="Ingredients" Command="{Binding OpenIngredientsWindowCommand}" HorizontalAlignment="Left" Margin="185,200,0,0" VerticalAlignment="Top" Width="75"/>
 
 
         </Grid> 
@@ -65,7 +64,7 @@
                 <TextBox  x:Name="InputText2" Grid.Row="1" MaxLength="50" Grid.Column="1"  Text="{Binding InputDiscountEndDate, Mode=TwoWay}" />
 
                 <TextBlock Text="BrandId:" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,88.5,0" />
-                <TextBox  x:Name="InputText3" Grid.Row="2" MaxLength="50" Grid.Column="1"  Text="{Binding BrandId, Mode=TwoWay}" />
+                <TextBox  x:Name="InputText3" Grid.Row="2" MaxLength="50" Grid.Column="1"  Text="{Binding InputBrandId, Mode=TwoWay}" />
 
             </Grid>
             <Button Content="Add" Command="{Binding AddDiscountCommand}" HorizontalAlignment="Left" Margin="5,125,0,0" VerticalAlignment="Top" Width="75" Height="20" Grid.Row="1"/>

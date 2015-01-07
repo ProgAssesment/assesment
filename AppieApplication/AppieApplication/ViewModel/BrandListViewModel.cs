@@ -26,10 +26,12 @@ namespace AppieApplication.ViewModel
 
         public BrandListViewModel()
         {
+
             repo = new BrandRepository();
             var brandList = repo.GetAll().Select(b => new BrandViewModel(b));
             Brands = new ObservableCollection<BrandViewModel>(brandList);
             Messenger.Default.Register<NotificationMessage<int>>(this, OnHitIt);
+
 
         }
 
@@ -45,6 +47,18 @@ namespace AppieApplication.ViewModel
 
                 Debug.WriteLine("CONTENT2:  " + Brands.ElementAt(0).Name);
             }
+
+            if (m.Notification == "recipe")
+            {
+                Debug.WriteLine("MESSAGE: " + m.Content);
+                //.Where(x => x.ProductId.Equals(m.Content))
+                var brandList = repo.GetAll().Select(b => new BrandViewModel(b));
+                Debug.WriteLine("CONTENT:  " + brandList.ElementAt(0).Name);
+                Brands = new ObservableCollection<BrandViewModel>(brandList);
+
+                Debug.WriteLine("CONTENT2:  " + Brands.ElementAt(0).Name);
+            }
+          
         }
     }
 }

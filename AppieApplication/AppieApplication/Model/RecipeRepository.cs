@@ -33,6 +33,18 @@ namespace AppieApplication.Model
 
         public void Delete(Recipe recipe)
         {
+
+
+            List<Recipe> recipes = context.Recipes.Where(x => x.id.Equals(recipe.id)).ToList();
+
+            List<Brand> brands = context.Brands.Where(x => x.Recipes.Equals(recipe.id)).ToList();
+
+            foreach (Brand p in brands)
+            {
+                context.Brands.Remove(p);
+            }
+
+
             context.Recipes.Remove(recipe);
             context.SaveChanges();
         }

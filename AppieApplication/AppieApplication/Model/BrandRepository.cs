@@ -23,12 +23,12 @@ namespace AppieApplication.Model
 
         public Brand Get(int id)
         {
-            throw new NotImplementedException();
+            return context.Brands.Where(x => x.id.Equals(id)).First();
         }
 
         public Brand GetByName(string name)
         {
-            throw new NotImplementedException();
+            return context.Brands.Where(x => x.Name.Equals(name)).First();
         }
 
         public void Delete(int id)

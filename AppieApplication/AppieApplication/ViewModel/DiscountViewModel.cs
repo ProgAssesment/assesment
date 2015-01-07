@@ -17,6 +17,8 @@ namespace AppieApplication.ViewModel
 
         public DateTime EndDate { get { return discount.EndDate; } set { discount.EndDate = value; RaisePropertyChanged(); } }
 
+        public int BrandId { get { return discount.BrandId; } set { discount.BrandId = value; RaisePropertyChanged(); } }
+
 
         private Discount discount;
 

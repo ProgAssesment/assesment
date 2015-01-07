@@ -52,6 +52,7 @@ namespace AppieApplication.ViewModel
 
         private void showRecipesWindow()
         {
+            recipesWindow = new RecipesWindow();
             recipesWindow.Show();
         }
 
@@ -62,6 +63,7 @@ namespace AppieApplication.ViewModel
         }
         private void showDiscountsWindow()
         {
+            discountsWindow = new DiscountsWindow();
             discountsWindow.Show();
         }
 

@@ -86,7 +86,6 @@ namespace AppieApplication.ViewModel
 
         public void OpenIngredientsWindow()
         {
-            brandsWindow = new BrandWindow();
             Messenger.Default.Send(new NotificationMessage<int>(SelectedRecipe.Id, "recipe"));
             brandsWindow.Show();
         }
@@ -127,7 +126,6 @@ namespace AppieApplication.ViewModel
 
             repo.Edit(r);
 
-            //    rvm.Id = repo.GetByName(r.Name).id;
 
             Recipes.Remove(SelectedRecipe);
             Recipes.Add(UpdateSelectedRecipe);
