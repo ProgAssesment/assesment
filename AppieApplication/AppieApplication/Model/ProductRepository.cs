@@ -23,22 +23,39 @@ namespace AppieApplication.Model
 
         public Product Get(int id)
         {
-            throw new NotImplementedException();
+            return context.Products.Where(x => x.Id.Equals(id)).First();
         }
 
-        public void Delete(int id)
+        public void Delete(Product product)
         {
-            throw new NotImplementedException();
+
+            List<Brand> brands = context.Brands.Where(x => x.ProductId.Equals(product.Id)).ToList();
+
+            context.Products.Remove(product);
+
+            foreach (Brand b in brands)
+            {
+                context.Brands.Remove(b);
+            }
+
+            context.SaveChanges();
+
         }
 
-        public Product Create(Product product)
+        public void Create(Product product)
         {
-            throw new NotImplementedException();
+            context.Products.Add(product);
+            context.SaveChanges();
         }
 
         public Product Edit(Product product)
         {
             throw new NotImplementedException();
+        }
+
+        public Product GetByName(String name)
+        {
+            return context.Products.Where(x => x.Name.Equals(name)).First();
         }
     }
 }

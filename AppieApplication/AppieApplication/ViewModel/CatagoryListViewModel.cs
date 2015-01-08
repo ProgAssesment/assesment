@@ -19,11 +19,15 @@ namespace AppieApplication.ViewModel
         private ProductsWindow productsWindow;
         private ICatagoryRepository repo;
 
+        private String catagoryName;
+
         private CatagoryViewModel selectedCatagory;
 
         public CatagoryViewModel SelectedCatagory { get { return selectedCatagory; } set { selectedCatagory = value; RaisePropertyChanged(); } }
 
         public ObservableCollection<CatagoryViewModel> Catagories { get; set; }
+
+        public String CatagoryName { get { return catagoryName; } set { catagoryName = value; RaisePropertyChanged(); } }
 
         public ICommand AddCatagoryCommand { get; set; }
 
@@ -31,9 +35,10 @@ namespace AppieApplication.ViewModel
 
         public ICommand OpenProductsWindowCommand { get; set; }
 
-        public CatagoryListViewModel()
+        public CatagoryListViewModel(ICatagoryRepository repo)
         {
-            repo = new CatagoryRepository();
+
+            this.repo = repo;
             var catagoryList = repo.GetAll().Select(c => new CatagoryViewModel(c));
             Catagories = new ObservableCollection<CatagoryViewModel>(catagoryList);
 
@@ -64,22 +69,19 @@ namespace AppieApplication.ViewModel
         //Code toevoegen
         public bool CanAddCatagory()
         {
-            return true;
+            return catagoryName != null;
         }
 
         public void AddCatagory()
         {
 
             CatagoryViewModel cvm = new CatagoryViewModel();
-            cvm.Name = SelectedCatagory.Name;
-
-            selectedCatagory = new CatagoryViewModel();
+            cvm.Name = catagoryName;
 
             Catagory c = new Catagory();
             c.Name = cvm.Name;
 
             repo.Create(c);
-
             cvm.Id = repo.GetByName(c.Name).Id;
 
             Catagories.Add(cvm);

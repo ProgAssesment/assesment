@@ -10,8 +10,9 @@ namespace AppieApplication.Model
     {
         List<Product> GetAll();
         Product Get(int id);
-        void Delete(int id);
-        Product Create(Product product);
+        void Delete(Product proudct);
+        void Create(Product product);
         Product Edit(Product product);
+        Product GetByName(String name);
     }
 }

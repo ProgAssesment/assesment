@@ -11,7 +11,7 @@ namespace AppieApplication.Model
         List<Brand> GetAll();
         Brand Get(int id);
         Brand GetByName(String name);
-        void Delete(int id);
+        void Delete(Brand brand);
         void Create(Brand brand);
         void Edit(Brand brand);
 

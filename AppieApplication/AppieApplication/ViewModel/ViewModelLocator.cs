@@ -13,6 +13,10 @@ namespace AppieApplication.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
+            SimpleIoc.Default.Register<ICatagoryRepository, CatagoryRepository>();
+            SimpleIoc.Default.Register<IBrandRepository, BrandRepository>();
+            SimpleIoc.Default.Register<IProductRepository, ProductRepository>();
+
             SimpleIoc.Default.Register<ProductListViewModel>();
             SimpleIoc.Default.Register<CatagoryListViewModel>();
             SimpleIoc.Default.Register<DiscountListViewModel>();
@@ -34,7 +38,10 @@ namespace AppieApplication.ViewModel
         public DiscountListViewModel DiscountListViewModel { get { return ServiceLocator.Current.GetInstance<DiscountListViewModel>(); } }
         public RecipeListViewModel RecipeListViewModel { get { return ServiceLocator.Current.GetInstance<RecipeListViewModel>(); } }
         public BrandListViewModel BrandListViewModel { get { return ServiceLocator.Current.GetInstance<BrandListViewModel>(); } }
+<<<<<<< HEAD
 
+=======
+>>>>>>> develop
 
         public static void Cleanup()
         {

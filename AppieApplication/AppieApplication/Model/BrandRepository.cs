@@ -26,14 +26,14 @@ namespace AppieApplication.Model
             return context.Brands.Where(x => x.id.Equals(id)).First();
         }
 
-        public Brand GetByName(string name)
+        public Brand GetByName(String name)
         {
             return context.Brands.Where(x => x.Name.Equals(name)).First();
         }
 
-        public void Delete(int id)
+        public void Delete(Brand brand)
         {
-            throw new NotImplementedException();
+            context.Brands.Remove(brand);
         }
 
         public void Create(Brand brand)

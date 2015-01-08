@@ -19,6 +19,7 @@ namespace AppieApplication
     /// </summary>
     public partial class BrandWindow : Window
     {
+
         public BrandWindow()
         {
             InitializeComponent();
