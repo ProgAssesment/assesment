@@ -15,12 +15,17 @@ namespace AppieApplication.Model
         
         public int BrandId { get; set; }
 
+        [Required]
+        public double PriceReduction { get; set; }
+
         [ForeignKey("BrandId")]
         public virtual Brand Brand { get; set; }
 
+        [Required]
         [DataType(DataType.Date)]
         public DateTime StartDate { get; set; }
 
+        [Required]
         [DataType(DataType.Date)]
         public DateTime EndDate { get; set; }
 

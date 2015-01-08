@@ -35,9 +35,10 @@ namespace AppieApplication.ViewModel
 
         public ICommand OpenProductsWindowCommand { get; set; }
 
-        public CatagoryListViewModel()
+        public CatagoryListViewModel(ICatagoryRepository repo)
         {
-            repo = new CatagoryRepository();
+
+            this.repo = repo;
             var catagoryList = repo.GetAll().Select(c => new CatagoryViewModel(c));
             Catagories = new ObservableCollection<CatagoryViewModel>(catagoryList);
 

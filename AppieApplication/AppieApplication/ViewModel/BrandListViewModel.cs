@@ -39,9 +39,10 @@ namespace AppieApplication.ViewModel
         public ICommand DeleteSelectedBrandCommand { get; set; }
         public ICommand AddBrandCommand { get; set; }
 
-        public BrandListViewModel()
+        public BrandListViewModel(IBrandRepository repo)
         {
-            repo = new BrandRepository();
+
+            this.repo = repo;
             var brandList = repo.GetAll().Select(b => new BrandViewModel(b));
             Brands = new ObservableCollection<BrandViewModel>(brandList);
             Messenger.Default.Register<NotificationMessage<int>>(this, OnHitIt);

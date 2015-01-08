@@ -38,9 +38,9 @@ namespace AppieApplication.ViewModel
         public ICommand DeleteSelecetedProductCommand { get; set; }
         public ICommand AddProductCommand { get; set; }
 
-        public ProductListViewModel()
+        public ProductListViewModel(IProductRepository repo)
         {
-            repo = new ProductRepository();
+            this.repo = repo;
             Messenger.Default.Register<NotificationMessage<int>>(this, OnHitIt);
             var productList = repo.GetAll().Where(x => x.CatagoryId.Equals(2)).Select(p => new ProductViewModel(p));
             Products = new ObservableCollection<ProductViewModel>(productList);
