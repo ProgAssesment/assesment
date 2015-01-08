@@ -86,6 +86,7 @@ namespace AppieApplication.ViewModel
 
         public void OpenIngredientsWindow()
         {
+            brandsWindow = new BrandWindow();
             Messenger.Default.Send(new NotificationMessage<int>(SelectedRecipe.Id, "recipe"));
             brandsWindow.Show();
         }
