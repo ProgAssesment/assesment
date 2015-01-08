@@ -19,6 +19,12 @@ namespace AppieApplication
     /// </summary>
     public partial class BrandWindow : Window
     {
+
+        //[dependency]
+
+        //prop listviewmodel
+        //set datacontext = value
+
         public BrandWindow()
         {
             InitializeComponent();

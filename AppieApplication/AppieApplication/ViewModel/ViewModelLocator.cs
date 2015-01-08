@@ -13,6 +13,8 @@ namespace AppieApplication.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
+            //registreren repo's
+
             SimpleIoc.Default.Register<ProductListViewModel>();
             SimpleIoc.Default.Register<CatagoryListViewModel>();
             SimpleIoc.Default.Register<DiscountListViewModel>();
