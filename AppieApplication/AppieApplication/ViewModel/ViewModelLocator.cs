@@ -16,6 +16,7 @@ namespace AppieApplication.ViewModel
             SimpleIoc.Default.Register<ICatagoryRepository, CatagoryRepository>();
             SimpleIoc.Default.Register<IBrandRepository, BrandRepository>();
             SimpleIoc.Default.Register<IProductRepository, ProductRepository>();
+            SimpleIoc.Default.Register<IShoppingListRepository, ShoppingListRepository>();
 
             SimpleIoc.Default.Register<ProductListViewModel>();
             SimpleIoc.Default.Register<CatagoryListViewModel>();
@@ -23,6 +24,7 @@ namespace AppieApplication.ViewModel
             SimpleIoc.Default.Register<RecipeListViewModel>();
             SimpleIoc.Default.Register<BrandListViewModel>();
             SimpleIoc.Default.Register<WindowsViewModel>();
+            SimpleIoc.Default.Register<ShoppingListViewModel>();
         }
 
         public WindowsViewModel Main
@@ -38,6 +40,7 @@ namespace AppieApplication.ViewModel
         public DiscountListViewModel DiscountListViewModel { get { return ServiceLocator.Current.GetInstance<DiscountListViewModel>(); } }
         public RecipeListViewModel RecipeListViewModel { get { return ServiceLocator.Current.GetInstance<RecipeListViewModel>(); } }
         public BrandListViewModel BrandListViewModel { get { return ServiceLocator.Current.GetInstance<BrandListViewModel>(); } }
+        public ShoppingListViewModel ShoppingListViewModel { get { return ServiceLocator.Current.GetInstance<ShoppingListViewModel>(); } }
 
 
         public static void Cleanup()

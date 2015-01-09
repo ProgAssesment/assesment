@@ -26,7 +26,7 @@ namespace AppieApplication.ViewModel
         public int Id { get { return brand.id; } set { brand.id = value; RaisePropertyChanged(); } }
         public String Name { get { return brand.Name; } set { brand.Name = value; RaisePropertyChanged(); } }
         public double Price { get { return brand.Price; } set { brand.Price = value; RaisePropertyChanged(); } }
-
+        public String ProductName { get { return brand.Product.Name; } }
 
     }
 }

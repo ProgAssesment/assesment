@@ -41,11 +41,12 @@ namespace AppieApplication.ViewModel
         public ICommand EditBrandCommand { get; set; }
         public ICommand AddBrandCommand { get; set; }
 
+        public ICommand AddToShoppingListCommand { get; set; }
+
         public BrandListViewModel(IBrandRepository repo)
         {
             recipo = new RecipeRepository();
             repo = new BrandRepository();
-
 
             this.repo = repo;
 
@@ -54,10 +55,10 @@ namespace AppieApplication.ViewModel
 
             Messenger.Default.Register<NotificationMessage<int>>(this, OnHitIt);
 
-
             DeleteBrandCommand = new RelayCommand(DeleteBrand, CanDeleteBrand);
             AddBrandCommand = new RelayCommand(AddBrand, CanAddBrand);
             EditBrandCommand = new RelayCommand(EditBrand, CanEditBrand);
+            AddToShoppingListCommand = new RelayCommand(AddToShoppingList, CanAddToShoppingList);
         }
 
         public bool CanAddBrand()
@@ -82,6 +83,17 @@ namespace AppieApplication.ViewModel
 
             Brands.Add(bvm);
 
+        }
+
+        public bool CanAddToShoppingList()
+        {
+            return SelectedBrand != null;
+        }
+
+        public void AddToShoppingList()
+        {
+            Brand b = repo.Get(selectedBrand.Id);
+            repo.AddToShoppingList(b);
         }
 
         public bool CanEditBrand()
