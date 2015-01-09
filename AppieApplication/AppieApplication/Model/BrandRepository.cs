@@ -44,7 +44,8 @@ namespace AppieApplication.Model
 
         public void Edit(Brand brand)
         {
-            throw new NotImplementedException();
+            context.Entry(brand).State = System.Data.Entity.EntityState.Modified;
+            context.SaveChanges();
         }
     }
 }

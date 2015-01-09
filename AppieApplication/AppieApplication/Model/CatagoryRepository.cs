@@ -61,7 +61,8 @@ namespace AppieApplication.Model
 
         public void Edit(Catagory catagory)
         {
-            throw new NotImplementedException();
+            context.Entry(catagory).State = System.Data.Entity.EntityState.Modified;
+            context.SaveChanges();
         }
         
     }

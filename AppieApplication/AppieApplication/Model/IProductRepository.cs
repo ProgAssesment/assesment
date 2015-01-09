@@ -12,7 +12,7 @@ namespace AppieApplication.Model
         Product Get(int id);
         void Delete(Product proudct);
         void Create(Product product);
-        Product Edit(Product product);
+        void Edit(Product product);
         Product GetByName(String name);
     }
 }

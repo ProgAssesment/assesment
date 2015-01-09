@@ -48,9 +48,10 @@ namespace AppieApplication.Model
             context.SaveChanges();
         }
 
-        public Product Edit(Product product)
+        public void Edit(Product product)
         {
-            throw new NotImplementedException();
+            context.Entry(product).State = System.Data.Entity.EntityState.Modified;
+            context.SaveChanges();
         }
 
         public Product GetByName(String name)
