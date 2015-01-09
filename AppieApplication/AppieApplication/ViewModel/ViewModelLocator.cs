@@ -38,10 +38,7 @@ namespace AppieApplication.ViewModel
         public DiscountListViewModel DiscountListViewModel { get { return ServiceLocator.Current.GetInstance<DiscountListViewModel>(); } }
         public RecipeListViewModel RecipeListViewModel { get { return ServiceLocator.Current.GetInstance<RecipeListViewModel>(); } }
         public BrandListViewModel BrandListViewModel { get { return ServiceLocator.Current.GetInstance<BrandListViewModel>(); } }
-<<<<<<< HEAD
 
-=======
->>>>>>> develop
 
         public static void Cleanup()
         {

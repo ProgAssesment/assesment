@@ -42,20 +42,18 @@ namespace AppieApplication.ViewModel
 
         public BrandListViewModel(IBrandRepository repo)
         {
-<<<<<<< HEAD
             recipo = new RecipeRepository();
             repo = new BrandRepository();
-=======
+
 
             this.repo = repo;
->>>>>>> develop
+
             var brandList = repo.GetAll().Select(b => new BrandViewModel(b));
             Brands = new ObservableCollection<BrandViewModel>(brandList);
 
             Messenger.Default.Register<NotificationMessage<int>>(this, OnHitIt);
 
-<<<<<<< HEAD
-=======
+
             DeleteSelectedBrandCommand = new RelayCommand(DeleteSelectedBrand, CanDeleteSelectedBrand);
             AddBrandCommand = new RelayCommand(AddBrand, CanAddBrand);
         }
@@ -97,7 +95,6 @@ namespace AppieApplication.ViewModel
             Brands.Remove(selectedBrand);
 
             SelectedBrand = new BrandViewModel();
->>>>>>> develop
 
         }
 
