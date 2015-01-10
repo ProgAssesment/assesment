@@ -31,6 +31,8 @@ namespace AppieApplication.ViewModel
 
         public ICommand AddCatagoryCommand { get; set; }
 
+        public ICommand EditCatagoryCommand { get; set; }
+
         public ICommand DeleteCatagoryCommand { get; set; }
 
         public ICommand OpenProductsWindowCommand { get; set; }
@@ -44,6 +46,7 @@ namespace AppieApplication.ViewModel
 
             productsWindow = new ProductsWindow();
             AddCatagoryCommand = new RelayCommand(AddCatagory, CanAddCatagory);
+            EditCatagoryCommand = new RelayCommand(EditCatagory, CanEditCatagory);
             DeleteCatagoryCommand = new RelayCommand(DeleteCatagory, CanDeleteCatagory);
             OpenProductsWindowCommand = new RelayCommand(OpenProductsWindow, CanOpenProductsWindow);
         }
@@ -87,15 +90,28 @@ namespace AppieApplication.ViewModel
             Catagories.Add(cvm);
         }
 
-        //kortere if
+        public bool CanEditCatagory()
+        {
+            return SelectedCatagory != null;
+        }
+
+        public void EditCatagory()
+        {
+            Catagory c = repo.Get(selectedCatagory.Id);
+            c.Name = selectedCatagory.Name;
+
+            repo.Edit(c);
+        }
+
+
         public bool CanDeleteCatagory()
         {
-            if (SelectedCatagory != null)
-            {
-                return true;
-            }
+            //if (SelectedCatagory != null)
+            //{
+            //    return true;
+            //}
 
-            return false;
+            return SelectedCatagory != null;
         }
 
         public void DeleteCatagory()

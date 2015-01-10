@@ -37,7 +37,8 @@ namespace AppieApplication.ViewModel
 
         public ObservableCollection<BrandViewModel> Brands { get { return brands; } set { brands = value; RaisePropertyChanged(); } }
 
-        public ICommand DeleteSelectedBrandCommand { get; set; }
+        public ICommand DeleteBrandCommand { get; set; }
+        public ICommand EditBrandCommand { get; set; }
         public ICommand AddBrandCommand { get; set; }
 
         public BrandListViewModel(IBrandRepository repo)
@@ -54,8 +55,9 @@ namespace AppieApplication.ViewModel
             Messenger.Default.Register<NotificationMessage<int>>(this, OnHitIt);
 
 
-            DeleteSelectedBrandCommand = new RelayCommand(DeleteSelectedBrand, CanDeleteSelectedBrand);
+            DeleteBrandCommand = new RelayCommand(DeleteBrand, CanDeleteBrand);
             AddBrandCommand = new RelayCommand(AddBrand, CanAddBrand);
+            EditBrandCommand = new RelayCommand(EditBrand, CanEditBrand);
         }
 
         public bool CanAddBrand()
@@ -82,12 +84,26 @@ namespace AppieApplication.ViewModel
 
         }
 
-        public bool CanDeleteSelectedBrand()
+        public bool CanEditBrand()
         {
             return SelectedBrand != null;
         }
 
-        public void DeleteSelectedBrand()
+        public void EditBrand()
+        {
+            Brand b = repo.Get(selectedBrand.Id);
+            b.Name = selectedBrand.Name;
+            b.Price = selectedBrand.Price;
+
+            repo.Edit(b);
+        }
+
+        public bool CanDeleteBrand()
+        {
+            return SelectedBrand != null;
+        }
+
+        public void DeleteBrand()
         {
             Brand b = repo.Get(selectedBrand.Id);
             repo.Delete(b);

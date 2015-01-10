@@ -32,7 +32,7 @@
                 <TextBox MaxLength="50" Grid.Column="1" Grid.Row="2"  Text="{Binding Path=SelectedCatagory.Name, Mode=TwoWay}" />
 
             </Grid>
-            <Button Content="Edit" HorizontalAlignment="Left" Margin="5,0,0,10" VerticalAlignment="Bottom" Width="75"/>
+            <Button Content="Edit" Command="{Binding EditCatagoryCommand}"  HorizontalAlignment="Left" Margin="5,0,0,10" VerticalAlignment="Bottom" Width="75"/>
             <Button Content="Delete" Command="{Binding DeleteCatagoryCommand}" HorizontalAlignment="Left" Margin="100,0,0,10" VerticalAlignment="Bottom" Width="75"/>
             <Button Content="Products" Command="{Binding OpenProductsWindowCommand}" HorizontalAlignment="Left" Margin="195,0,0,10" VerticalAlignment="Bottom" Width="75"/>
 

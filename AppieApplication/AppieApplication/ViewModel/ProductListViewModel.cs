@@ -35,7 +35,8 @@ namespace AppieApplication.ViewModel
         public ObservableCollection<ProductViewModel> Products { get { return products; } set { products = value; RaisePropertyChanged(); } }
 
         public ICommand OpenBrandsWindowCommand { get; set; }
-        public ICommand DeleteSelecetedProductCommand { get; set; }
+        public ICommand DeleteProductCommand { get; set; }
+        public ICommand EditProductCommand { get; set; }
         public ICommand AddProductCommand { get; set; }
 
         public ProductListViewModel(IProductRepository repo)
@@ -47,7 +48,7 @@ namespace AppieApplication.ViewModel
 
             brandWindow = new BrandWindow();
             OpenBrandsWindowCommand = new RelayCommand(OpenBrandsWindow, CanOpenBrandsWindow);
-            DeleteSelecetedProductCommand = new RelayCommand(DeleteProduct, CanDeleteProduct);
+            DeleteProductCommand = new RelayCommand(DeleteProduct, CanDeleteProduct);
             AddProductCommand = new RelayCommand(AddProduct, CanAddProduct);
 
         }
@@ -87,6 +88,19 @@ namespace AppieApplication.ViewModel
             pvm.Id = repo.GetByName(p.Name).Id;
 
             Products.Add(pvm);
+        }
+
+        public bool CanEditProduct()
+        {
+            return SelectedProduct != null;
+        }
+
+        public void EditProduct()
+        {
+            Product p = repo.Get(selectedProduct.Id);
+            p.Name = selectedProduct.Name;
+
+            repo.Edit(p);
         }
 
         public bool CanDeleteProduct()
