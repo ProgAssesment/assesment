@@ -19,6 +19,8 @@ namespace AppieApplication.ViewModel
 
         public int BrandId { get { return discount.BrandId; } set { discount.BrandId = value; RaisePropertyChanged(); } }
 
+        public Double PriceReduction { get { return discount.PriceReduction; } set { discount.PriceReduction = value; RaisePropertyChanged(); } }
+
 
         private Discount discount;
 

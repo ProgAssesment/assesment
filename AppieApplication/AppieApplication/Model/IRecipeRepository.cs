@@ -15,5 +15,6 @@ namespace AppieApplication.Model
         void Create(Recipe recipe);
         void Edit(Recipe recipe);
 
+
     }
 }

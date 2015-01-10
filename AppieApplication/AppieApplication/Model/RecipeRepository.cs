@@ -57,10 +57,9 @@ namespace AppieApplication.Model
 
         public void Edit(Recipe recipe)
         {
-            Recipe recipes = context.Recipes.SingleOrDefault(b => b.id == recipe.id);
-            recipes.Name = recipe.Name;
-            recipes.id = recipe.id;
+            context.Entry(recipe).State = System.Data.Entity.EntityState.Modified;
             context.SaveChanges(); 
         }
+
     }
 }
