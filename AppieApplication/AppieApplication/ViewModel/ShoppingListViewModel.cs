@@ -16,23 +16,52 @@ namespace AppieApplication.ViewModel
 
         private int listId = 1;
 
-        private ShoppingList shoppingList;
+        private ObservableCollection<ShoppingViewModel> svmList;
 
-        public ShoppingList ShoppingListtmp { get { return shoppingList; } set { shoppingList = value; RaisePropertyChanged(); } }
+        public ObservableCollection<ShoppingViewModel> SvmList { get { return svmList; } set { svmList = value; RaisePropertyChanged(); } }
 
-        private ObservableCollection<BrandViewModel> brands;
-
-        public ObservableCollection<BrandViewModel> Brands { get { return brands; } set { brands = value; RaisePropertyChanged(); } }
-
+        public double TotalPrice { get; set; }
 
         public ShoppingListViewModel(IShoppingListRepository repo)
         {
             this.repo = repo;
-            ShoppingListtmp = repo.Get(listId);
-            var list = ShoppingListtmp.Products.Select(b => new BrandViewModel(b));
-            Brands = new ObservableCollection<BrandViewModel>(list);
+            TotalPrice = 0;
+            ShoppingList list = repo.Get(listId);
+            SetupList(list);
         }
 
+        private void SetupList(ShoppingList list)
+        {
+
+            SvmList = new ObservableCollection<ShoppingViewModel>();
+
+            foreach (Brand b in list.Products)
+            {
+
+                bool add = true;
+
+                foreach (ShoppingViewModel s in SvmList)
+                {
+
+                    if (s.ProductName.Equals(b.Product.Name))
+                    {
+                        s.Count += 1;
+                        add = false;
+                        break;
+                    }
+
+                }
+
+                if (add)
+                {
+                    ShoppingViewModel svm = new ShoppingViewModel(b);
+                    SvmList.Add(svm);
+                    TotalPrice += svm.Price;
+                }
+
+            }
+
+        }
 
 
     }

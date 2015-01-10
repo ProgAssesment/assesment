@@ -120,6 +120,7 @@
     <Compile Include="ViewModel\RecipeListViewModel.cs" />
     <Compile Include="ViewModel\RecipeViewModel.cs" />
     <Compile Include="ViewModel\ShoppingListViewModel.cs" />
+    <Compile Include="ViewModel\ShoppingViewModel.cs" />
     <Compile Include="ViewModel\WindowsViewModel.cs" />
     <Compile Include="ViewModel\ProductListViewModel.cs" />
     <Compile Include="ViewModel\ProductViewModel.cs" />

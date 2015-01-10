@@ -6,43 +6,13 @@
 
     <Grid>
 
-        <Grid.Resources>
-
-            <Style x:Key="GroupHeaderStyle" TargetType="{x:Type GroupItem}">
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type GroupItem}">
-                            <Expander x:Name="exp" IsExpanded="True"
-                          Background="White"
-                          Foreground="Black">
-                                <Expander.Header>
-                                    <TextBlock Text="{Binding ProductName}"/>
-                                </Expander.Header>
-                                <ItemsPresenter />
-                            </Expander>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-
-        </Grid.Resources>
-
-        <DataGrid x:Name="dgData" CanUserAddRows="False" AutoGenerateColumns="False"
-                         CanUserDeleteRows="False" ItemsSource="{Binding Brands}">
-            <DataGrid.GroupStyle>
-                <GroupStyle ContainerStyle="{StaticResource GroupHeaderStyle}">
-                    <GroupStyle.Panel>
-                        <ItemsPanelTemplate>
-                            <DataGridRowsPresenter/>
-                        </ItemsPanelTemplate>
-                    </GroupStyle.Panel>
-                </GroupStyle>
-            </DataGrid.GroupStyle>
+        <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding SvmList}" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Top">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding ProductName}"/>
+                <DataGridTextColumn Header="Id" Binding="{Binding Count}"/>
             </DataGrid.Columns>
         </DataGrid>
-        
+
     </Grid>
 
 </Window>
