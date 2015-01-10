@@ -46,12 +46,9 @@ namespace AppieApplication.ViewModel
             recipo = new RecipeRepository();
             repo = new BrandRepository();
 
-
             this.repo = repo;
-
             var brandList = repo.GetAll().Select(b => new BrandViewModel(b));
             Brands = new ObservableCollection<BrandViewModel>(brandList);
-
             Messenger.Default.Register<NotificationMessage<int>>(this, OnHitIt);
 
 
@@ -120,13 +117,17 @@ namespace AppieApplication.ViewModel
             {
                 var brandList = repo.GetAll().Select(b => new BrandViewModel(b));
                 Brands = new ObservableCollection<BrandViewModel>(brandList);
-                productId = m.Content;
+                productId = m.Content; 
             }
 
             if (m.Notification == "recipe")
             {
+               // var brandList = repo.GetAll().Select(b => new BrandViewModel(b));
+                
                 var recept = recipo.GetAll().Where(x => x.id.Equals(m.Content)).First();
-                var list = recept.Products.Where(d => d.id.Equals(m.Content)).Select(b => new BrandViewModel(b));
+
+                var list = recept.Products.Where(d => d.id.Equals("ALLE BRAND IDS")).Select(b => new BrandViewModel(b));
+                
                 Brands = new ObservableCollection<BrandViewModel>(list);
 
             }

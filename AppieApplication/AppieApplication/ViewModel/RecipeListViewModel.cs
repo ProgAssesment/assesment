@@ -17,6 +17,8 @@ namespace AppieApplication.ViewModel
         private BrandWindow brandsWindow;
 
         private IRecipeRepository repo;
+        private IBrandRepository repoBrand;
+
 
         private RecipeViewModel _updateRecipe;
 
@@ -61,7 +63,7 @@ namespace AppieApplication.ViewModel
         {
 
            this.repo = repo;
-
+           repoBrand = new BrandRepository();
             var recipeList = repo.GetAll().Select(r => new RecipeViewModel(r));
             Recipes = new ObservableCollection<RecipeViewModel>(recipeList);
 
@@ -71,7 +73,7 @@ namespace AppieApplication.ViewModel
             DeleteRecipeCommand = new RelayCommand(DeleteRecipe, CanDeleteRecipe);
             UpdateRecipeCommand = new RelayCommand(UpdateDiscount, CanUpdateDiscount);
             OpenIngredientsWindowCommand = new RelayCommand(OpenIngredientsWindow, CanOpenIngredientsWindow);
-            AddRecipeProductsToShoplistCommand = new RelayCommand(OpenIngredientsWindow, CanOpenIngredientsWindow);
+            AddRecipeProductsToShoplistCommand = new RelayCommand(AddProductToShoppingList, CanAddProductToShoppingList);
 
         }
 
@@ -91,6 +93,22 @@ namespace AppieApplication.ViewModel
             brandsWindow = new BrandWindow();
             Messenger.Default.Send(new NotificationMessage<int>(SelectedRecipe.Id, "recipe"));
             brandsWindow.Show();
+        }
+
+        public bool CanAddProductToShoppingList()
+        {
+            return SelectedRecipe != null;
+        }
+
+        public void AddProductToShoppingList()
+        {
+
+
+            Recipe r = repo.Get(SelectedRecipe.Id);
+            var brands = repoBrand.GetAll().Where(x => x.Recipes.Equals(r)).First();
+            //Brand brand = brands;
+            //Brand b = repo.Get(selectedBrand.Id);
+            repoBrand.AddToShoppingList(brands);
         }
 
 
