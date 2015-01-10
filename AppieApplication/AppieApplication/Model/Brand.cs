@@ -14,6 +14,7 @@ namespace AppieApplication.Model
         public Brand()
         {
             Discounts = new HashSet<Discount>();
+            Recipes = new HashSet<Recipe>();
         }
 
         [Key]
@@ -22,9 +23,6 @@ namespace AppieApplication.Model
         public String Name { get; set; }
         [Required]
         public double Price { get; set; }
-
-        [Required]
-        public int Count { get; set; }
 
         public int ProductId { get; set; }
 

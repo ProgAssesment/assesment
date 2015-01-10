@@ -1,5 +1,6 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Messaging;
 using System.Windows.Input;
 
 namespace AppieApplication.ViewModel
@@ -52,6 +53,7 @@ namespace AppieApplication.ViewModel
         public void ShowShoppingListWindow()
         {
             shoppingListWindow = new ShoppingListWindow();
+            Messenger.Default.Send(new NotificationMessage<int>(0, "refreshList"));
             shoppingListWindow.Show();
         }
 

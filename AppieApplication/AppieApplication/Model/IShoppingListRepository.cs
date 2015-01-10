@@ -8,7 +8,7 @@ namespace AppieApplication.Model
 {
     public interface IShoppingListRepository
     {
-        ShoppingList Get(int id);
+        List<ShoppingList> GetAll();
         void Delete(ShoppingList shoppingList);
         void Create(ShoppingList shoppingList);
         void Edit(ShoppingList shoppingList);

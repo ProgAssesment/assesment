@@ -11,15 +11,14 @@ namespace AppieApplication.Model
     public class ShoppingList
     {
 
-        public ShoppingList()
-        {
-            Products = new HashSet<Brand>();
-        }
-
         [Key]
-        public int Id { get; set; }
+        public int BrandId { get; set; }
+        
+        [ForeignKey("BrandId")]
+        public virtual Brand brand { get; set; }
 
-        public virtual ICollection<Brand> Products { get; set; }
+        [Required]
+        public int Count { get; set; }
 
     }
 }

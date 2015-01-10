@@ -45,6 +45,7 @@ namespace AppieApplication.ViewModel
 
         public BrandListViewModel(IBrandRepository repo)
         {
+            //dependency injecteren
             recipo = new RecipeRepository();
             repo = new BrandRepository();
 
@@ -82,6 +83,8 @@ namespace AppieApplication.ViewModel
             bvm.Id = repo.GetByName(b.Name).id;
 
             Brands.Add(bvm);
+
+            
 
         }
 

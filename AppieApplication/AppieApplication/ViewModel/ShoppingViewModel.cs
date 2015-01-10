@@ -11,21 +11,13 @@ namespace AppieApplication.ViewModel
     public class ShoppingViewModel : ViewModelBase
     {
 
+        private String productName;
+
         private int count;
 
-        private Brand brand;
 
-        public ShoppingViewModel(Brand brand)
-        {
-            this.brand = brand;
-            count = 1;
-        }
-
-        //set mag weg?
-        public String ProductName { get { return brand.Product.Name; } set { brand.Product.Name = value; RaisePropertyChanged(); } }
+        public String ProductName { get { return productName; } set { productName = value; RaisePropertyChanged(); } }
 
         public int Count { get { return count; } set { count = value; RaisePropertyChanged(); } }
-
-        public double Price { get { return brand.Price; }}
     }
 }

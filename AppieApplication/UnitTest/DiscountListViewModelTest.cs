@@ -24,10 +24,16 @@ namespace UnitTest
 
             var discountViewModel = new DiscountListViewModel(moq.Object);
 
-
             //Act
 
+            //discount aanmaken discount d = new..
+            //discount toevoegen aan moq
+            
+
             //Assert
+
+            //aseert.equals(d, moq.get(d.id))
+            //assert.equald(d.id, moq.get(d.id).id)
         }
     }
 }

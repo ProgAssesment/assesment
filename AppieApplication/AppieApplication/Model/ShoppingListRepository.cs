@@ -16,10 +16,9 @@ namespace AppieApplication.Model
             context = new DBcontext();
         }
 
-        public ShoppingList Get(int id)
+        public List<ShoppingList> GetAll()
         {
-
-            return context.ShoppingLists.Where(x => x.Id.Equals(id)).First();
+            return context.ShoppingLists.ToList();
         }
 
         public void Delete(ShoppingList shoppingList)
