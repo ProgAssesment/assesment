@@ -130,9 +130,9 @@ namespace AppieApplication.ViewModel
         {
             if (m.Notification == "product")
             {
-                var brandList = repo.GetAll().Select(b => new BrandViewModel(b));
-                Brands = new ObservableCollection<BrandViewModel>(brandList);
                 productId = m.Content;
+                var brandList = repo.GetAll().Where(x => x.ProductId.Equals(productId)).Select(b => new BrandViewModel(b));
+                Brands = new ObservableCollection<BrandViewModel>(brandList);
             }
 
             if (m.Notification == "recipe")

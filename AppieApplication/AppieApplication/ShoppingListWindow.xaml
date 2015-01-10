@@ -7,29 +7,28 @@
     <Grid>
 
         <Grid.Resources>
-            
+
             <Style x:Key="GroupHeaderStyle" TargetType="{x:Type GroupItem}">
                 <Setter Property="Template">
                     <Setter.Value>
-                    
                         <ControlTemplate TargetType="{x:Type GroupItem}">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding ProductName}"/>
-                                <TextBlock Text="{Binding ItemCount}"/>
-                            </StackPanel>
+                            <Expander x:Name="exp" IsExpanded="True"
+                          Background="White"
+                          Foreground="Black">
+                                <Expander.Header>
+                                    <TextBlock Text="{Binding ProductName}"/>
+                                </Expander.Header>
+                                <ItemsPresenter />
+                            </Expander>
                         </ControlTemplate>
-                        
                     </Setter.Value>
                 </Setter>
             </Style>
-            
-        </Grid.Resources>
-        
-        <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding Brands}"  Margin="5" HorizontalAlignment="Center" VerticalAlignment="Top">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Binding="{Binding ProductName}"/>
 
-            </DataGrid.Columns>
+        </Grid.Resources>
+
+        <DataGrid x:Name="dgData" CanUserAddRows="False" AutoGenerateColumns="False"
+                         CanUserDeleteRows="False" ItemsSource="{Binding Brands}">
             <DataGrid.GroupStyle>
                 <GroupStyle ContainerStyle="{StaticResource GroupHeaderStyle}">
                     <GroupStyle.Panel>
@@ -39,6 +38,9 @@
                     </GroupStyle.Panel>
                 </GroupStyle>
             </DataGrid.GroupStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+            </DataGrid.Columns>
         </DataGrid>
         
     </Grid>
