@@ -18,6 +18,7 @@ namespace AppieApplication.Model
 
         public ShoppingList Get(int id)
         {
+
             return context.ShoppingLists.Where(x => x.Id.Equals(id)).First();
         }
 

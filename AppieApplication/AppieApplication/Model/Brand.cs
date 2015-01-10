@@ -22,7 +22,10 @@ namespace AppieApplication.Model
         public String Name { get; set; }
         [Required]
         public double Price { get; set; }
-        
+
+        [Required]
+        public int Count { get; set; }
+
         public int ProductId { get; set; }
 
         [ForeignKey("ProductId")]
