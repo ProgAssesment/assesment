@@ -36,8 +36,9 @@
             <TextBox MaxLength="50" Grid.Column="1" Grid.Row="2"  Text="{Binding Path=SelectedBrand.Price, Mode=TwoWay}" />
 
         </Grid>
-            <Button Content="Edit" Command="{Binding EditBrandCommand}"  Width="75" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5,0,0,10"/>
-            <Button Content="Delete" Command="{Binding DeleteBrandCommand}"  Width="75" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="5,0,0,10"/>
+            <Button Content="To shoppinglist" Command="{Binding AddToShoppingListCommand}"  Width="75" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5,0,0,10"/>
+            <Button Content="Edit" Command="{Binding EditBrandCommand}"  Width="75" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="5,0,0,10"/>
+            <Button Content="Delete" Command="{Binding DeleteBrandCommand}"  Width="75" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5,0,0,10"/>
 
     </Grid>
 
