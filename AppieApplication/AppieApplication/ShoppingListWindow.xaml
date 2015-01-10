@@ -13,6 +13,8 @@
             </DataGrid.Columns>
         </DataGrid>
 
+        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Right" Text="{Binding TotalPrice}"/>
+        
     </Grid>
 
 </Window>

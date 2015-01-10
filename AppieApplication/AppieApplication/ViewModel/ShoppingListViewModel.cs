@@ -46,6 +46,7 @@ namespace AppieApplication.ViewModel
                     if (s.ProductName.Equals(b.Product.Name))
                     {
                         s.Count += 1;
+                        TotalPrice += s.Price;
                         add = false;
                         break;
                     }
