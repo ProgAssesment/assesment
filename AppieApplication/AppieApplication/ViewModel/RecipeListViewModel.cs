@@ -50,16 +50,17 @@ namespace AppieApplication.ViewModel
         public ObservableCollection<RecipeViewModel> Recipes { get; set; }
 
         public ICommand AddRecipeCommand { get; set; }
+        public ICommand AddRecipeProductsToShoplistCommand { get; set; }
 
         public ICommand DeleteRecipeCommand { get; set; }
 
         public ICommand OpenIngredientsWindowCommand { get; set; }
         public ICommand UpdateRecipeCommand { get; set; }
 
-        public RecipeListViewModel()
+        public RecipeListViewModel(IRecipeRepository repo)
         {
 
-            repo = new RecipeRepository();
+           this.repo = repo;
 
             var recipeList = repo.GetAll().Select(r => new RecipeViewModel(r));
             Recipes = new ObservableCollection<RecipeViewModel>(recipeList);
@@ -67,9 +68,10 @@ namespace AppieApplication.ViewModel
             brandsWindow = new BrandWindow();
 
             AddRecipeCommand = new RelayCommand(AddRecipe, CanAddRecipe);
-            DeleteRecipeCommand = new RelayCommand(DeleteRecipe);
-            UpdateRecipeCommand = new RelayCommand(UpdateDiscount);
-            OpenIngredientsWindowCommand = new RelayCommand(OpenIngredientsWindow);
+            DeleteRecipeCommand = new RelayCommand(DeleteRecipe, CanDeleteRecipe);
+            UpdateRecipeCommand = new RelayCommand(UpdateDiscount, CanUpdateDiscount);
+            OpenIngredientsWindowCommand = new RelayCommand(OpenIngredientsWindow, CanOpenIngredientsWindow);
+            AddRecipeProductsToShoplistCommand = new RelayCommand(OpenIngredientsWindow, CanOpenIngredientsWindow);
 
         }
 
@@ -117,26 +119,17 @@ namespace AppieApplication.ViewModel
 
         public void UpdateDiscount()
         {
-            UpdateSelectedRecipe.Name = SelectedRecipe.Name;
-            UpdateSelectedRecipe.Id = SelectedRecipe.Id;
-
-            Recipe r = new Recipe();
-
-            r.Name = UpdateSelectedRecipe.Name;
-            r.id = UpdateSelectedRecipe.Id;
+            Recipe r = repo.Get(SelectedRecipe.Id);
+            r.Name = SelectedRecipe.Name;
 
             repo.Edit(r);
-
-
-            Recipes.Remove(SelectedRecipe);
-            Recipes.Add(UpdateSelectedRecipe);
 
         }
 
         private bool CanUpdateDiscount()
         {
 
-            return true;
+            return SelectedRecipe != null;
         }
 
 
@@ -157,6 +150,8 @@ namespace AppieApplication.ViewModel
             }
 
             return false;
+
+
         }
 
 

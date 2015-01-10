@@ -40,18 +40,7 @@ namespace AppieApplication.Model
 
         public void Edit(Discount discount)
         {
-            if (discount == null)
-                return;
-
-            var originalDiscount = context.Discounts.SingleOrDefault(i => i.Coupon == discount.Coupon);
-
-            if (originalDiscount == null)
-                return;
-
-            originalDiscount.StartDate = discount.StartDate;
-            originalDiscount.EndDate = discount.EndDate;
-            originalDiscount.Coupon = discount.Coupon;
-
+            context.Entry(discount).State = System.Data.Entity.EntityState.Modified;
             context.SaveChanges();
         }
     }

@@ -16,6 +16,8 @@ namespace AppieApplication.ViewModel
             SimpleIoc.Default.Register<ICatagoryRepository, CatagoryRepository>();
             SimpleIoc.Default.Register<IBrandRepository, BrandRepository>();
             SimpleIoc.Default.Register<IProductRepository, ProductRepository>();
+            SimpleIoc.Default.Register<IRecipeRepository, RecipeRepository>();
+            SimpleIoc.Default.Register<IDiscountRepository, DiscountRepository>();
 
             SimpleIoc.Default.Register<ProductListViewModel>();
             SimpleIoc.Default.Register<CatagoryListViewModel>();

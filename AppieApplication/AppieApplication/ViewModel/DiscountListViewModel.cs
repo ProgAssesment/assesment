@@ -16,10 +16,11 @@ namespace AppieApplication.ViewModel
         private IDiscountRepository repo;
         private IBrandRepository repoBrand;
 
-        private int _inputBrandId;
+        private BrandViewModel brandsName;
 
-        public int InputBrandId { get { return _inputBrandId; } set { _inputBrandId = value; RaisePropertyChanged(); } }
+        public BrandViewModel BrandsName { get { return brandsName; } set { brandsName = value; RaisePropertyChanged(); } }
 
+        public ObservableCollection<BrandViewModel> Brands { get; set; }
 
         private DiscountViewModel _selectedDiscount;
 
@@ -36,6 +37,11 @@ namespace AppieApplication.ViewModel
         public DateTime InputDiscountStartDate { get { return _inputDiscountStartDate; } set { _inputDiscountStartDate = value; RaisePropertyChanged(); } }
         public DateTime InputDiscountEndDate { get { return _inputDiscountEndDate; } set { _inputDiscountEndDate = value; RaisePropertyChanged(); } }
 
+        public double _inputDiscount;
+
+        public Double InputDiscount { get { return _inputDiscount; } set { _inputDiscount = value; RaisePropertyChanged(); } }
+
+
         public ObservableCollection<DiscountViewModel> Discounts { get; set; }
 
         public ICommand AddDiscountCommand { get; set; }
@@ -44,21 +50,22 @@ namespace AppieApplication.ViewModel
 
 
 
-        public DiscountListViewModel()
+        public DiscountListViewModel(IDiscountRepository repo)
         {
 
-            repo = new DiscountRepository();
+            this.repo = repo;
             repoBrand = new BrandRepository();
 
             var discountList = repo.GetAll().Select(d => new DiscountViewModel(d));
             Discounts = new ObservableCollection<DiscountViewModel>(discountList);
 
             AddDiscountCommand = new RelayCommand(AddDiscount,CanAddDiscount);
-            DeleteDiscountCommand = new RelayCommand(DeleteDiscount);
-            UpdateDiscountCommand = new RelayCommand(UpdateDiscount);
+            DeleteDiscountCommand = new RelayCommand(DeleteDiscount, CanDeleteDiscount);
+            UpdateDiscountCommand = new RelayCommand(UpdateDiscount, CanUpdateDiscount);
+
+            var brandList = repoBrand.GetAll().Select(d => new BrandViewModel(d));
+            Brands = new ObservableCollection<BrandViewModel>(brandList);
             
-
-
         }
 
         public void AddDiscount()
@@ -67,16 +74,18 @@ namespace AppieApplication.ViewModel
             DiscountViewModel dvm = new DiscountViewModel();
             dvm.StartDate = InputDiscountStartDate;
             dvm.EndDate = InputDiscountEndDate;
-            int idBrand = InputBrandId;
-            
+            dvm.BrandId = BrandsName.Id;
+            dvm.PriceReduction = InputDiscount;
+
             Discount d = new Discount();
             d.StartDate = dvm.StartDate;
             d.EndDate = dvm.EndDate;
-            d.BrandId = idBrand;
+            d.BrandId = dvm.BrandId;
+            d.PriceReduction = dvm.PriceReduction;
+
             repo.Create(d);
 
-            idBrand = repoBrand.GetByName(repoBrand.Get(idBrand).Name).id;
-
+            dvm.BrandId = repoBrand.GetByName(repoBrand.Get(dvm.BrandId).Name).id; 
 
             Discounts.Add(dvm);
 
@@ -90,22 +99,13 @@ namespace AppieApplication.ViewModel
 
         public void UpdateDiscount()
         {
-            UpdateSelectedDiscount.StartDate = SelectedDiscount.StartDate;
-            UpdateSelectedDiscount.EndDate = SelectedDiscount.EndDate;
-            UpdateSelectedDiscount.Coupon = SelectedDiscount.Coupon;
+            Discount d = repo.Get(SelectedDiscount.Coupon);
+            d.StartDate = SelectedDiscount.StartDate;
+            d.EndDate = SelectedDiscount.EndDate;
+            d.BrandId = SelectedDiscount.BrandId;
+            d.PriceReduction = SelectedDiscount.PriceReduction;
 
-            Discount d = new Discount();
-
-            d.StartDate = UpdateSelectedDiscount.StartDate;
-            d.EndDate = UpdateSelectedDiscount.EndDate;
-            d.Coupon = UpdateSelectedDiscount.Coupon;
-            
             repo.Edit(d);
-
-            //    rvm.Id = repo.GetByName(r.Name).id;
-            
-            Discounts.Remove(SelectedDiscount);
-            Discounts.Add(UpdateSelectedDiscount);
 
         }
 

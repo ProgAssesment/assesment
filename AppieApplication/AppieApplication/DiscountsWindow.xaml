@@ -1,22 +1,23 @@
 ﻿<Window x:Class="AppieApplication.DiscountsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="DiscountsWindow" Height="260" Width="565"  
+        Title="DiscountsWindow" Height="400" Width="810"  
         DataContext="{Binding DiscountListViewModel, Source={StaticResource Locator}}">
-    <WrapPanel Orientation="Horizontal">
 
-        <Grid Background="Beige" Height="225" Width="275">
+
+    <WrapPanel Orientation="Horizontal">
+        <Grid Background="Beige" Height="400" Width="400">
             <DataGrid AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding SelectedDiscount}" ItemsSource="{Binding Discounts}"  Margin="0,5,0,25" HorizontalAlignment="Center" VerticalAlignment="Top">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Coupon" Width="55" Binding="{Binding Coupon}" />
                     <DataGridTextColumn Header="StartDate" Width="75"  Binding="{Binding StartDate}"/>
                     <DataGridTextColumn Header="EndDate" Width="75"  Binding="{Binding EndDate}"/>
                     <DataGridTextColumn Header="BrandId" Width="60"  Binding="{Binding BrandId}"/>
-
+                    <DataGridTextColumn Header="Discount" Width="60"  Binding="{Binding PriceReduction}"/>
                 </DataGrid.Columns>
             </DataGrid>
 
-            <Grid Margin="25,0,0,35" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+            <Grid Margin="25,0,0,90" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100" />
                     <ColumnDefinition Width="150" />
@@ -25,6 +26,8 @@
                     <RowDefinition Height="25" />
                     <RowDefinition Height="25" />
                     <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+
                 </Grid.RowDefinitions>
 
                 <TextBlock Text="StartDate:" Grid.Column="0" Grid.Row="0" />
@@ -36,13 +39,16 @@
                 <TextBlock Text="Brand Id:" Grid.Column="0" Grid.Row="2" />
                 <TextBox MaxLength="50" Grid.Column="1" Grid.Row="2"  Text="{Binding SelectedDiscount.BrandId, Mode=TwoWay}" Margin="0,0,10,0" />
 
+                <TextBlock Text="Discount:" Grid.Column="0" Grid.Row="3" />
+                <TextBox MaxLength="50" Grid.Column="1" Grid.Row="3"  Text="{Binding SelectedDiscount.PriceReduction, Mode=TwoWay}" Margin="0,0,10,0" />
+
             </Grid>
-            <Button Content="Edit" Command="{Binding UpdateDiscountCommand}" HorizontalAlignment="Left" Margin="25,200,0,0" VerticalAlignment="Top" Width="75"/>
-            <Button Content="Delete" Command="{Binding DeleteDiscountCommand}" HorizontalAlignment="Left" Margin="105,200,0,0" VerticalAlignment="Top" Width="75"/>
+            <Button Content="Edit" Command="{Binding UpdateDiscountCommand}"  HorizontalAlignment="Left" Margin="25,325,0,0" VerticalAlignment="Top" Width="75"/>
+            <Button Content="Delete" Command="{Binding DeleteDiscountCommand}" HorizontalAlignment="Left" Margin="105,325,0,0" VerticalAlignment="Top" Width="75"/>
 
 
         </Grid> 
-        <Grid Background="Bisque" Height="225" Width="275">
+        <Grid Background="Bisque" Height="400" Width="395">
 
             <TextBlock Text="Discount Adding" FontSize="20" Margin="0,0,0,0" HorizontalAlignment="Right" Width="275" />
 
@@ -55,6 +61,7 @@
                     <RowDefinition Height="25" />
                     <RowDefinition Height="25" />
                     <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
                 </Grid.RowDefinitions>
 
                 <TextBlock Text="StartDate:" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,88.5,0" />
@@ -64,10 +71,21 @@
                 <TextBox  x:Name="InputText2" Grid.Row="1" MaxLength="50" Grid.Column="1"  Text="{Binding InputDiscountEndDate, Mode=TwoWay}" />
 
                 <TextBlock Text="BrandId:" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,88.5,0" />
-                <TextBox  x:Name="InputText3" Grid.Row="2" MaxLength="50" Grid.Column="1"  Text="{Binding InputBrandId, Mode=TwoWay}" />
+                <!--<TextBox  x:Name="InputText3" Grid.Row="2" MaxLength="50" Grid.Column="1"  Text="{Binding InputBrandId, Mode=TwoWay}" />-->
+
+                <ComboBox x:Name="brandComboBox" 
+          ItemsSource="{Binding Brands}"
+          DisplayMemberPath="Name" 
+          SelectedValuePath="Name" 
+          SelectedValue="{Binding BrandsName.Name, Mode=TwoWay}"
+          SelectedItem="{Binding BrandsName}" Grid.Column="1"   Grid.Row="2"/>
+
+                <TextBlock Text="Discount:" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,88.5,0" />
+                <TextBox  x:Name="InputText3" Grid.Row="3" MaxLength="50" Grid.Column="1"  Text="{Binding InputDiscount, Mode=TwoWay}" />
+
 
             </Grid>
-            <Button Content="Add" Command="{Binding AddDiscountCommand}" HorizontalAlignment="Left" Margin="5,125,0,0" VerticalAlignment="Top" Width="75" Height="20" Grid.Row="1"/>
+            <Button Content="Add" Command="{Binding AddDiscountCommand}" HorizontalAlignment="Left" Margin="5,150,0,0" VerticalAlignment="Top" Width="75" Height="20" Grid.Row="1"/>
         </Grid>
 
     </WrapPanel >
