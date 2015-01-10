@@ -1,6 +1,6 @@
 ﻿using AppieApplication.Model;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
@@ -18,12 +18,6 @@ namespace AppieApplication.ViewModel
 
         private IRecipeRepository repo;
         private IBrandRepository repoBrand;
-
-
-        private RecipeViewModel _updateRecipe;
-
-        public RecipeViewModel UpdateSelectedRecipe { get { return _updateRecipe; } set { _updateRecipe = value; RaisePropertyChanged(); } }
-
 
         private RecipeViewModel _selectedRecipe;
 
@@ -59,11 +53,12 @@ namespace AppieApplication.ViewModel
         public ICommand OpenIngredientsWindowCommand { get; set; }
         public ICommand UpdateRecipeCommand { get; set; }
 
-        public RecipeListViewModel(IRecipeRepository repo)
+        public RecipeListViewModel(IRecipeRepository repo, IBrandRepository repoBrand)
         {
 
-           this.repo = repo;
-           repoBrand = new BrandRepository();
+            this.repo = repo;
+            this.repoBrand = repoBrand;
+
             var recipeList = repo.GetAll().Select(r => new RecipeViewModel(r));
             Recipes = new ObservableCollection<RecipeViewModel>(recipeList);
 
@@ -103,12 +98,18 @@ namespace AppieApplication.ViewModel
         public void AddProductToShoppingList()
         {
 
-
             Recipe r = repo.Get(SelectedRecipe.Id);
-            var brands = repoBrand.GetAll().Where(x => x.Recipes.Equals(r)).First();
-            //Brand brand = brands;
-            //Brand b = repo.Get(selectedBrand.Id);
-            repoBrand.AddToShoppingList(brands);
+
+
+            foreach (Brand b in r.Products)
+            {
+                repo.AddToShoppingList(b);
+            }
+
+
+
+            //var brands = repoBrand.GetAll().Where(x => x.id.Equals(r.)).First();
+            //repoBrand.AddToShoppingList(brands);
         }
 
 

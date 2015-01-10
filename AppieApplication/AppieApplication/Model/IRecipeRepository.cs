@@ -14,7 +14,7 @@ namespace AppieApplication.Model
         void Delete(Recipe recipe);
         void Create(Recipe recipe);
         void Edit(Recipe recipe);
-
+        void AddToShoppingList(Brand brand);
 
     }
 }

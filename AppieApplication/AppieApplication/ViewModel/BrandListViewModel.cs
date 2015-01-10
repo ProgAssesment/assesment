@@ -122,11 +122,9 @@ namespace AppieApplication.ViewModel
 
             if (m.Notification == "recipe")
             {
-               // var brandList = repo.GetAll().Select(b => new BrandViewModel(b));
                 
                 var recept = recipo.GetAll().Where(x => x.id.Equals(m.Content)).First();
-
-                var list = recept.Products.Where(d => d.id.Equals("ALLE BRAND IDS")).Select(b => new BrandViewModel(b));
+                var list = recept.Products.Select(b => new BrandViewModel(b));
                 
                 Brands = new ObservableCollection<BrandViewModel>(list);
 

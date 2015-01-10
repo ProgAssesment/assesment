@@ -1,6 +1,6 @@
 ﻿using AppieApplication.Model;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.CommandWpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -26,12 +26,7 @@ namespace AppieApplication.ViewModel
 
         public DiscountViewModel SelectedDiscount { get { return _selectedDiscount; } set { _selectedDiscount = value; RaisePropertyChanged(); } }
 
-        private DiscountViewModel _updateDiscount;
-
-        public DiscountViewModel UpdateSelectedDiscount { get { return _updateDiscount; } set { _updateDiscount = value; RaisePropertyChanged(); } }
-
-
-        private DateTime _inputDiscountStartDate;
+          private DateTime _inputDiscountStartDate;
         private DateTime _inputDiscountEndDate;
 
         public DateTime InputDiscountStartDate { get { return _inputDiscountStartDate; } set { _inputDiscountStartDate = value; RaisePropertyChanged(); } }
