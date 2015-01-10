@@ -96,6 +96,11 @@
     <Compile Include="Model\Catagory.cs" />
     <Compile Include="Model\CatagoryRepository.cs" />
     <Compile Include="Model\IBrandRepository.cs" />
+    <Compile Include="Model\IShoppingListRepository.cs" />
+    <Compile Include="Model\ShoppingListRepository.cs" />
+    <Compile Include="ShoppingListWindow.xaml.cs">
+      <DependentUpon>ShoppingListWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\BrandListViewModel.cs" />
     <Compile Include="ViewModel\BrandViewModel.cs" />
     <Compile Include="ViewModel\CatagoryViewModel.cs" />
@@ -119,6 +124,8 @@
     <Compile Include="ViewModel\DiscountViewModel.cs" />
     <Compile Include="ViewModel\RecipeListViewModel.cs" />
     <Compile Include="ViewModel\RecipeViewModel.cs" />
+    <Compile Include="ViewModel\ShoppingListViewModel.cs" />
+    <Compile Include="ViewModel\ShoppingViewModel.cs" />
     <Compile Include="ViewModel\WindowsViewModel.cs" />
     <Compile Include="ViewModel\ProductListViewModel.cs" />
     <Compile Include="ViewModel\ProductViewModel.cs" />
@@ -152,6 +159,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RecipesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ShoppingListWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

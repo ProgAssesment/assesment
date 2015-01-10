@@ -1,5 +1,6 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Messaging;
 using System.Windows.Input;
 
 namespace AppieApplication.ViewModel
@@ -10,12 +11,13 @@ namespace AppieApplication.ViewModel
 
         private CatagoryWindow catagoryWindow;
         private RecipesWindow recipesWindow;
+        private ShoppingListWindow shoppingListWindow;
 
 
         //for testing
         private DiscountsWindow discountsWindow;
         public ICommand ShowDiscountsWindowCommand { get; set; }
-
+        public ICommand ShowShoppingListWindowCommand { get; set; }
         public ICommand ShowCatagoriesWindowCommand { get; set; }
         public ICommand ShowRecipesWindowCommand { get; set; }
 
@@ -24,6 +26,7 @@ namespace AppieApplication.ViewModel
         {
             catagoryWindow = new CatagoryWindow();
             recipesWindow = new RecipesWindow();
+            shoppingListWindow = new ShoppingListWindow();
 
             //for testing
             discountsWindow = new DiscountsWindow();
@@ -31,12 +34,27 @@ namespace AppieApplication.ViewModel
 
             ShowCatagoriesWindowCommand = new RelayCommand(showCatagoriesWindow, canShowCatagoriesWindow);
             ShowRecipesWindowCommand = new RelayCommand(showRecipesWindow, canShowRecipesWindow);
+            ShowShoppingListWindowCommand = new RelayCommand(ShowShoppingListWindow, CanShowShoppingListWindow);
 
         }
 
+        public bool CanShowShoppingListWindow()
+        {
+            return shoppingListWindow.IsVisible == false;
+        }
+
+
+            //HOOFDLETTERS
         private bool canShowCatagoriesWindow()
         {
             return catagoryWindow.IsVisible == false;
+        }
+
+        public void ShowShoppingListWindow()
+        {
+            shoppingListWindow = new ShoppingListWindow();
+            Messenger.Default.Send(new NotificationMessage<int>(0, "refreshList"));
+            shoppingListWindow.Show();
         }
 
         private void showCatagoriesWindow()

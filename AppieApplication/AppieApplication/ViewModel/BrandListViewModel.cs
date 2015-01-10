@@ -41,8 +41,11 @@ namespace AppieApplication.ViewModel
         public ICommand EditBrandCommand { get; set; }
         public ICommand AddBrandCommand { get; set; }
 
+        public ICommand AddToShoppingListCommand { get; set; }
+
         public BrandListViewModel(IBrandRepository repo)
         {
+            //dependency injecteren
             recipo = new RecipeRepository();
             repo = new BrandRepository();
 
@@ -51,10 +54,10 @@ namespace AppieApplication.ViewModel
             Brands = new ObservableCollection<BrandViewModel>(brandList);
             Messenger.Default.Register<NotificationMessage<int>>(this, OnHitIt);
 
-
             DeleteBrandCommand = new RelayCommand(DeleteBrand, CanDeleteBrand);
             AddBrandCommand = new RelayCommand(AddBrand, CanAddBrand);
             EditBrandCommand = new RelayCommand(EditBrand, CanEditBrand);
+            AddToShoppingListCommand = new RelayCommand(AddToShoppingList, CanAddToShoppingList);
         }
 
         public bool CanAddBrand()
@@ -79,6 +82,19 @@ namespace AppieApplication.ViewModel
 
             Brands.Add(bvm);
 
+            
+
+        }
+
+        public bool CanAddToShoppingList()
+        {
+            return SelectedBrand != null;
+        }
+
+        public void AddToShoppingList()
+        {
+            Brand b = repo.Get(selectedBrand.Id);
+            repo.AddToShoppingList(b);
         }
 
         public bool CanEditBrand()
@@ -115,9 +131,9 @@ namespace AppieApplication.ViewModel
         {
             if (m.Notification == "product")
             {
-                var brandList = repo.GetAll().Select(b => new BrandViewModel(b));
+                productId = m.Content;
+                var brandList = repo.GetAll().Where(x => x.ProductId.Equals(productId)).Select(b => new BrandViewModel(b));
                 Brands = new ObservableCollection<BrandViewModel>(brandList);
-                productId = m.Content; 
             }
 
             if (m.Notification == "recipe")

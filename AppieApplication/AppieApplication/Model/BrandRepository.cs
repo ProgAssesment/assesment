@@ -47,5 +47,25 @@ namespace AppieApplication.Model
             context.Entry(brand).State = System.Data.Entity.EntityState.Modified;
             context.SaveChanges();
         }
+
+        public void AddToShoppingList(Brand brand)
+        {
+            ShoppingList s = context.ShoppingLists.Where(x => x.BrandId.Equals(brand.id)).FirstOrDefault();
+
+            if (s != null)
+            {
+                s.Count += 1;
+                context.Entry(s).State = System.Data.Entity.EntityState.Modified;
+            }
+            else
+            {
+                s = new ShoppingList();
+                s.brand = brand;
+                s.Count = 1;
+                context.ShoppingLists.Add(s);
+            }
+            
+            context.SaveChanges();
+        }
     }
 }

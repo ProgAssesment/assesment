@@ -15,5 +15,7 @@ namespace AppieApplication.Model
         void Create(Brand brand);
         void Edit(Brand brand);
 
+        void AddToShoppingList(Brand brand);
+
     }
 }
