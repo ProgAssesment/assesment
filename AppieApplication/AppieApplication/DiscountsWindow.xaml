@@ -1,12 +1,12 @@
 ﻿<Window x:Class="AppieApplication.DiscountsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="DiscountsWindow" Height="400" Width="810"  
+        Title="DiscountsWindow" Height="400" Width="830"  
         DataContext="{Binding DiscountListViewModel, Source={StaticResource Locator}}">
 
 
     <WrapPanel Orientation="Horizontal">
-        <Grid Background="Beige" Height="400" Width="400">
+        <Grid Background="DodgerBlue" Height="400" Width="400">
             <DataGrid AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding SelectedDiscount}" ItemsSource="{Binding Discounts}"  Margin="0,5,0,25" HorizontalAlignment="Center" VerticalAlignment="Top">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Coupon" Width="55" Binding="{Binding Coupon}" />
@@ -48,7 +48,7 @@
 
 
         </Grid> 
-        <Grid Background="Bisque" Height="400" Width="395">
+        <Grid Background="White" Height="400" Width="395">
 
             <TextBlock Text="Discount Adding" FontSize="20" Margin="0,0,0,0" HorizontalAlignment="Right" Width="275" />
 

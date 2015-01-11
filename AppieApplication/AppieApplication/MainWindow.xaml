@@ -7,7 +7,7 @@
         <Button Command="{Binding ShowCatagoriesWindowCommand}" Margin="10,10,10,264">Show Catagories</Button>
         <Button Command="{Binding ShowShoppingListWindowCommand}"  Margin="10,60,10,214">Show Shopping List</Button>
         <Button Command="{Binding ShowRecipesWindowCommand}" Margin="10,110,10,164">Show Recepts</Button>
-        <Button Command="{Binding ShowDiscountsWindowCommand}" Margin="10,164,10,110.5">Show Discounts(Testing)</Button>
+        <Button Command="{Binding ShowDiscountsWindowCommand}" Margin="10,164,10,110.5">Show Discounts</Button>
 
 
 

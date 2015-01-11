@@ -45,7 +45,7 @@ namespace UnitTest
             });
 
             mockBrandRepo = moq.Object;
-            bvm = new BrandListViewModel(moq.Object);
+            //bvm = new BrandListViewModel(moq.Object);
         }
 
         [TestMethod]

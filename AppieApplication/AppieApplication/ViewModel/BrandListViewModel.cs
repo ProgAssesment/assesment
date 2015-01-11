@@ -43,10 +43,9 @@ namespace AppieApplication.ViewModel
 
         public ICommand AddToShoppingListCommand { get; set; }
 
-        public BrandListViewModel(IBrandRepository repo)
+        public BrandListViewModel(IBrandRepository repo, IRecipeRepository recipo)
         {
-            //dependency injecteren
-            //this.recipo = recipo;
+            this.recipo = recipo;
 
             this.repo = repo;
             var brandList = repo.GetAll().Select(b => new BrandViewModel(b));
