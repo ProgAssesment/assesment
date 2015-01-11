@@ -46,7 +46,7 @@ namespace AppieApplication.ViewModel
             var productList = repo.GetAll().Where(x => x.CatagoryId.Equals(2)).Select(p => new ProductViewModel(p));
             Products = new ObservableCollection<ProductViewModel>(productList);
 
-            brandWindow = new BrandWindow();
+            //brandWindow = new BrandWindow();
             OpenBrandsWindowCommand = new RelayCommand(OpenBrandsWindow, CanOpenBrandsWindow);
             DeleteProductCommand = new RelayCommand(DeleteProduct, CanDeleteProduct);
             AddProductCommand = new RelayCommand(AddProduct, CanAddProduct);

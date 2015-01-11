@@ -47,16 +47,14 @@ namespace UnitTest
             mockCatagoryRepo = moq.Object;
             cvm = new CatagoryListViewModel(moq.Object);
 
-            
         }
 
 
         [TestMethod]
         public void AddCatagory()
         {
-
             //arrange
-            cvm.SelectedCatagory = new CatagoryViewModel { Id = 4, Name = "Brood" };
+            cvm.CatagoryName = "Brood";
 
             //act
             cvm.AddCatagory();
@@ -66,7 +64,7 @@ namespace UnitTest
             Assert.IsNotNull(c);
             Assert.IsInstanceOfType(c, typeof(Catagory));
             Assert.AreEqual(4, c.Id);
-
+            Assert.AreEqual("Brood", c.Name);
         }
 
         [TestMethod]

@@ -68,8 +68,10 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="BrandListViewModelTest.cs" />
     <Compile Include="CatagoryListViewModelTest.cs" />
     <Compile Include="DiscountListViewModelTest.cs" />
+    <Compile Include="ProductListViewModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShoppingListViewModelTest.cs" />
     <Compile Include="RecipeListViewModelTest.cs" />
