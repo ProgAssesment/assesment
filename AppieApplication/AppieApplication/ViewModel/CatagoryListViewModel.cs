@@ -44,7 +44,7 @@ namespace AppieApplication.ViewModel
             var catagoryList = repo.GetAll().Select(c => new CatagoryViewModel(c));
             Catagories = new ObservableCollection<CatagoryViewModel>(catagoryList);
 
-            productsWindow = new ProductsWindow();
+            //productsWindow = new ProductsWindow();
             AddCatagoryCommand = new RelayCommand(AddCatagory, CanAddCatagory);
             EditCatagoryCommand = new RelayCommand(EditCatagory, CanEditCatagory);
             DeleteCatagoryCommand = new RelayCommand(DeleteCatagory, CanDeleteCatagory);
@@ -106,11 +106,6 @@ namespace AppieApplication.ViewModel
 
         public bool CanDeleteCatagory()
         {
-            //if (SelectedCatagory != null)
-            //{
-            //    return true;
-            //}
-
             return SelectedCatagory != null;
         }
 

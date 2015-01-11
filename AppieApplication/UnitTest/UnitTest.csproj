@@ -71,6 +71,7 @@
     <Compile Include="CatagoryListViewModelTest.cs" />
     <Compile Include="DiscountListViewModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShoppingListViewModelTest.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
   </ItemGroup>

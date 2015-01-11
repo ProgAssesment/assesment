@@ -22,13 +22,13 @@ namespace UnitTest
 
             List<Catagory> catagories = new List<Catagory> { new Catagory { Id = 1, Name = "Zuivel" }, new Catagory { Id = 2, Name = "Broodbeleg" }, new Catagory { Id = 3, Name = "Snoep" } };
 
+            moq.Setup(m => m.Create(It.IsAny<Catagory>())).Callback((Catagory c) => { c.Id = catagories.Count + 1; catagories.Add(c); });
+
             moq.Setup(m => m.GetAll()).Returns(catagories);
 
-            moq.Setup(m => m.Get(It.IsAny<int>())).Returns((int i) => catagories.Where(x => x.Id == i).Single());
+            moq.Setup(m => m.Get(It.IsAny<int>())).Returns((int i) => catagories.Where(x => x.Id == i).FirstOrDefault());
 
             moq.Setup(m => m.GetByName(It.IsAny<String>())).Returns((String s) => catagories.Where(x => x.Name == s).Single());
-
-            moq.Setup(m => m.Create(It.IsAny<Catagory>())).Callback((Catagory c) => catagories.Add(c));
 
             moq.Setup(m => m.Delete(It.IsAny<Catagory>())).Callback((Catagory c) => catagories.Remove(c));
 
@@ -62,11 +62,39 @@ namespace UnitTest
             cvm.AddCatagory();
 
             //assert
-            Catagory c = mockCatagoryRepo.GetByName("Brood");
+            Catagory c = mockCatagoryRepo.Get(4);
             Assert.IsNotNull(c);
             Assert.IsInstanceOfType(c, typeof(Catagory));
             Assert.AreEqual(4, c.Id);
 
         }
+
+        [TestMethod]
+        public void DeleteCatagory()
+        {
+            cvm.SelectedCatagory = new CatagoryViewModel { Id = 1, Name = "Zuivel" };
+
+            cvm.DeleteCatagory();
+
+            Catagory c = mockCatagoryRepo.Get(1);
+            Assert.IsNull(c);
+        }
+
+        [TestMethod]
+        public void UpdateCatagory()
+        {
+            cvm.SelectedCatagory = new CatagoryViewModel { Id = 1, Name = "ZuivelEdited" };
+
+            cvm.EditCatagory();
+
+            Catagory c = mockCatagoryRepo.Get(1);
+
+            Assert.IsNotNull(c);
+            Assert.IsInstanceOfType(c, typeof(Catagory));
+            Assert.AreEqual(1, c.Id);
+            Assert.AreEqual("ZuivelEdited", c.Name);
+
+        }
+
     }
 }

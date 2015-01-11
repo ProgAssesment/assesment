@@ -11,6 +11,5 @@ namespace AppieApplication.Model
         List<ShoppingList> GetAll();
         void Delete(ShoppingList shoppingList);
         void Create(ShoppingList shoppingList);
-        void Edit(ShoppingList shoppingList);
     }
 }

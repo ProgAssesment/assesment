@@ -33,10 +33,5 @@ namespace AppieApplication.Model
             context.SaveChanges();
         }
 
-        public void Edit(ShoppingList shoppingList)
-        {
-            context.Entry(shoppingList).State = System.Data.Entity.EntityState.Modified;
-            context.SaveChanges();
-        }
     }
 }

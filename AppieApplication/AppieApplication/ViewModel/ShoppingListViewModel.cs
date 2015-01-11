@@ -22,7 +22,9 @@ namespace AppieApplication.ViewModel
 
         public ObservableCollection<ShoppingViewModel> SvmList { get { return svmList; } set { svmList = value; RaisePropertyChanged(); } }
 
-        public double TotalPrice { get; set; }
+        private double totalPrice;
+
+        public double TotalPrice { get { return totalPrice; } set { totalPrice = value; RaisePropertyChanged(); } }
 
         public ShoppingListViewModel(IShoppingListRepository repo)
         {
@@ -31,7 +33,7 @@ namespace AppieApplication.ViewModel
             SetupList();
         }
 
-        private void SetupList()
+        public void SetupList()
         {
             TotalPrice = 0;
 
@@ -50,7 +52,15 @@ namespace AppieApplication.ViewModel
                     if (s.ProductName.Equals(sl.brand.Product.Name))
                     {
                         s.Count += sl.Count;
-                        TotalPrice +=( (sl.brand.Price - sl.brand.Discounts.Where(x => x.StartDate <= DateTime.Now && DateTime.Now <= x.EndDate).First().PriceReduction) * sl.Count); 
+                        if (sl.brand.Discounts.Where(x => x.StartDate <= DateTime.Now && DateTime.Now <= x.EndDate).FirstOrDefault() != null)
+                        {
+                            TotalPrice += ((sl.brand.Price - sl.brand.Discounts.Where(x => x.StartDate <= DateTime.Now && DateTime.Now <= x.EndDate).First().PriceReduction) * sl.Count);
+
+                        }
+                        else
+                        {
+                            TotalPrice += (sl.brand.Price * sl.Count);
+                        }
                         add = false;
                         break;
                     }
@@ -62,7 +72,15 @@ namespace AppieApplication.ViewModel
                     svm.ProductName = sl.brand.Product.Name;
                     svm.Count = sl.Count;
                     SvmList.Add(svm);
-                    TotalPrice += ((sl.brand.Price - sl.brand.Discounts.Where(x => x.StartDate <= DateTime.Now && DateTime.Now <= x.EndDate).First().PriceReduction) * sl.Count); 
+                    if (sl.brand.Discounts.Where(x => x.StartDate <= DateTime.Now && DateTime.Now <= x.EndDate).FirstOrDefault() != null)
+                    {
+                        TotalPrice += ((sl.brand.Price - sl.brand.Discounts.Where(x => x.StartDate <= DateTime.Now && DateTime.Now <= x.EndDate).First().PriceReduction) * sl.Count);
+
+                    }
+                    else
+                    {
+                        TotalPrice += (sl.brand.Price * sl.Count);
+                    }
                 }
 
             }
