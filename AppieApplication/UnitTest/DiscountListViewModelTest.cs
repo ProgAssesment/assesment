@@ -18,7 +18,7 @@ namespace UnitTest
         public DiscountListViewModelTest()
         {
             Mock<IDiscountRepository> moq = new Mock<IDiscountRepository>();
-            List<Discount> discounts = new List<Discount> { new Discount { Coupon = 1, StartDate = new DateTime(2014, 12, 8), EndDate = new DateTime(2014, 12, 12), PriceReduction = 2, BrandId = 1 }, new Discount { Coupon = 2, StartDate = new DateTime(2015, 1, 1), EndDate = new DateTime(2015, 1, 5), PriceReduction = 0.75, BrandId = 2 }, new Discount { Coupon = 1, StartDate = new DateTime(2016, 1, 1), EndDate = new DateTime(2016, 1, 5), PriceReduction = 0.25, BrandId = 3 } };
+            List<Discount> discounts = new List<Discount> { new Discount { Coupon = 1, StartDate = new DateTime(2014, 12, 8), EndDate = new DateTime(2014, 12, 12), PriceReduction = 2, BrandId = 1 }, new Discount { Coupon = 2, StartDate = new DateTime(2015, 1, 1), EndDate = new DateTime(2015, 1, 5), PriceReduction = 0.75, BrandId = 2 }, new Discount { Coupon = 3, StartDate = new DateTime(2016, 1, 1), EndDate = new DateTime(2016, 1, 5), PriceReduction = 0.25, BrandId = 3 } };
 
             moq.Setup(m => m.Create(It.IsAny<Discount>())).Callback((Discount c) => { c.Coupon = discounts.Count + 1; discounts.Add(c); });
 
@@ -85,8 +85,8 @@ namespace UnitTest
             Assert.IsNotNull(c);
             Assert.IsInstanceOfType(c, typeof(Discount));
             Assert.AreEqual(1, c.Coupon);
-            Assert.AreEqual(DateTime.Now, c.StartDate);
-            Assert.AreEqual(DateTime.Now, c.EndDate);
+            Assert.AreEqual(new DateTime(2017, 1, 1), c.StartDate);
+            Assert.AreEqual(new DateTime(2017, 1, 5), c.EndDate);
             Assert.AreEqual(0.30, c.PriceReduction);
             Assert.AreEqual(2, c.BrandId);
 

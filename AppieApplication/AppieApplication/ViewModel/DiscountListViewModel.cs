@@ -49,16 +49,16 @@ namespace AppieApplication.ViewModel
         public ICommand UpdateDiscountCommand { get; set; }
 
 
-         //public DiscountListViewModel(IDiscountRepository repo, IBrandRepository repoBrand)
+         public DiscountListViewModel(IDiscountRepository repo, IBrandRepository repoBrand)
      
         //FOR TEST
-        public DiscountListViewModel(IDiscountRepository repo)
+      //  public DiscountListViewModel(IDiscountRepository repo)
         {
 
             this.repo = repo;
 
             //FOR TEST
-            // this.repoBrand = repoBrand;
+            this.repoBrand = repoBrand;
 
             var discountList = repo.GetAll().Select(d => new DiscountViewModel(d));
             Discounts = new ObservableCollection<DiscountViewModel>(discountList);
@@ -69,8 +69,8 @@ namespace AppieApplication.ViewModel
 
             Messenger.Default.Register<NotificationMessage<int>>(this, OnHitIt);
 
-            //var brandList = repoBrand.GetAll().Select(d => new BrandViewModel(d));
-            //Brands = new ObservableCollection<BrandViewModel>(brandList);
+            var brandList = repoBrand.GetAll().Select(d => new BrandViewModel(d));
+            Brands = new ObservableCollection<BrandViewModel>(brandList);
        
         }
 
@@ -94,7 +94,7 @@ namespace AppieApplication.ViewModel
             repo.Create(d);
 
             dvm.Coupon = repo.GetAll().Last().Coupon;
-
+            //FOR TEST
             dvm.BrandId = repoBrand.GetByName(repoBrand.Get(dvm.BrandId).Name).id;
 
             Discounts.Add(dvm);
