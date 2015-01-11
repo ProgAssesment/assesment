@@ -45,11 +45,11 @@ namespace AppieApplication.ViewModel
 
 
 
-        public DiscountListViewModel(IDiscountRepository repo)
+        public DiscountListViewModel(IDiscountRepository repo, IBrandRepository repoBrand)
         {
 
             this.repo = repo;
-            repoBrand = new BrandRepository();
+            this.repoBrand = repoBrand;
 
             var discountList = repo.GetAll().Select(d => new DiscountViewModel(d));
             Discounts = new ObservableCollection<DiscountViewModel>(discountList);
@@ -111,7 +111,7 @@ namespace AppieApplication.ViewModel
         }
 
 
-        private void DeleteDiscount()
+        public void DeleteDiscount()
         {
             Discount d = repo.Get(_selectedDiscount.Coupon);
             repo.Delete(d);
@@ -120,7 +120,7 @@ namespace AppieApplication.ViewModel
 
         }
 
-        public bool CanDeleteDiscount()
+        private bool CanDeleteDiscount()
         {
             return SelectedDiscount != null;
         }

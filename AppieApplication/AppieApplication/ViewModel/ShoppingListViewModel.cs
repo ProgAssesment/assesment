@@ -37,7 +37,7 @@ namespace AppieApplication.ViewModel
         {
             TotalPrice = 0;
 
-            repo = new ShoppingListRepository();
+           repo = new ShoppingListRepository();
             SvmList = new ObservableCollection<ShoppingViewModel>();
 
             List<ShoppingList> list = repo.GetAll();

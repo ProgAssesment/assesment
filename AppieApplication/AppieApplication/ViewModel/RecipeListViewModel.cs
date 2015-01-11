@@ -55,9 +55,9 @@ namespace AppieApplication.ViewModel
 
         public RecipeListViewModel(IRecipeRepository repo, IBrandRepository repoBrand)
         {
-
+          
             this.repo = repo;
-            this.repoBrand = repoBrand;
+           this.repoBrand = repoBrand;
 
             var recipeList = repo.GetAll().Select(r => new RecipeViewModel(r));
             Recipes = new ObservableCollection<RecipeViewModel>(recipeList);
@@ -66,7 +66,7 @@ namespace AppieApplication.ViewModel
 
             AddRecipeCommand = new RelayCommand(AddRecipe, CanAddRecipe);
             DeleteRecipeCommand = new RelayCommand(DeleteRecipe, CanDeleteRecipe);
-            UpdateRecipeCommand = new RelayCommand(UpdateDiscount, CanUpdateDiscount);
+            UpdateRecipeCommand = new RelayCommand(UpdateRecipe, CanUpdateRecipe);
             OpenIngredientsWindowCommand = new RelayCommand(OpenIngredientsWindow, CanOpenIngredientsWindow);
             AddRecipeProductsToShoplistCommand = new RelayCommand(AddProductToShoppingList, CanAddProductToShoppingList);
 
@@ -85,7 +85,7 @@ namespace AppieApplication.ViewModel
 
         public void OpenIngredientsWindow()
         {
-            brandsWindow = new BrandWindow();
+           brandsWindow = new BrandWindow();
             Messenger.Default.Send(new NotificationMessage<int>(SelectedRecipe.Id, "recipe"));
             brandsWindow.Show();
         }
@@ -108,12 +108,12 @@ namespace AppieApplication.ViewModel
 
 
 
-            //var brands = repoBrand.GetAll().Where(x => x.id.Equals(r.)).First();
-            //repoBrand.AddToShoppingList(brands);
+            var brands = repoBrand.GetAll().Where(x => x.id.Equals(r)).First();
+            repoBrand.AddToShoppingList(brands);
         }
 
 
-        private void AddRecipe()
+        public void AddRecipe()
         {
             RecipeViewModel rvm = new RecipeViewModel();
 
@@ -136,7 +136,7 @@ namespace AppieApplication.ViewModel
         }
 
 
-        public void UpdateDiscount()
+        public void UpdateRecipe()
         {
             Recipe r = repo.Get(SelectedRecipe.Id);
             r.Name = SelectedRecipe.Name;
@@ -145,7 +145,7 @@ namespace AppieApplication.ViewModel
 
         }
 
-        private bool CanUpdateDiscount()
+        private bool CanUpdateRecipe()
         {
 
             return SelectedRecipe != null;
@@ -153,7 +153,7 @@ namespace AppieApplication.ViewModel
 
 
 
-        private void DeleteRecipe()
+        public void DeleteRecipe()
         {
             Recipe r = repo.Get(_selectedRecipe.Id);
             repo.Delete(r);
@@ -161,7 +161,7 @@ namespace AppieApplication.ViewModel
             SelectedRecipe = new RecipeViewModel();
         }
 
-        public bool CanDeleteRecipe()
+        private bool CanDeleteRecipe()
         {
             if (SelectedRecipe != null)
             {
