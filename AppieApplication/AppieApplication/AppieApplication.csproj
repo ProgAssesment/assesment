@@ -92,12 +92,12 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Brand.cs" />
-    <Compile Include="Model\BrandRepository.cs" />
+    <Compile Include="Repository\BrandRepository.cs" />
     <Compile Include="Model\Catagory.cs" />
-    <Compile Include="Model\CatagoryRepository.cs" />
-    <Compile Include="Model\IBrandRepository.cs" />
-    <Compile Include="Model\IShoppingListRepository.cs" />
-    <Compile Include="Model\ShoppingListRepository.cs" />
+    <Compile Include="Repository\CatagoryRepository.cs" />
+    <Compile Include="Repository\IBrandRepository.cs" />
+    <Compile Include="Repository\IShoppingListRepository.cs" />
+    <Compile Include="Repository\ShoppingListRepository.cs" />
     <Compile Include="ShoppingListWindow.xaml.cs">
       <DependentUpon>ShoppingListWindow.xaml</DependentUpon>
     </Compile>
@@ -105,13 +105,13 @@
     <Compile Include="ViewModel\BrandViewModel.cs" />
     <Compile Include="ViewModel\CatagoryViewModel.cs" />
     <Compile Include="Model\Discount.cs" />
-    <Compile Include="Model\DiscountRepository.cs" />
-    <Compile Include="Model\ICatagoryRepository.cs" />
-    <Compile Include="Model\IDiscountRepository.cs" />
-    <Compile Include="Model\IRecipeRepository.cs" />
+    <Compile Include="Repository\DiscountRepository.cs" />
+    <Compile Include="Repository\ICatagoryRepository.cs" />
+    <Compile Include="Repository\IDiscountRepository.cs" />
+    <Compile Include="Repository\IRecipeRepository.cs" />
     <Compile Include="Model\MessageCommunicator.cs" />
     <Compile Include="Model\Recipe.cs" />
-    <Compile Include="Model\RecipeRepository.cs" />
+    <Compile Include="Repository\RecipeRepository.cs" />
     <Compile Include="Model\ShoppingList.cs" />
     <Compile Include="ProductsWindow.xaml.cs">
       <DependentUpon>ProductsWindow.xaml</DependentUpon>
@@ -168,8 +168,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\ProductRepository.cs" />
-    <Compile Include="Model\IProductRepository.cs" />
+    <Compile Include="Repository\ProductRepository.cs" />
+    <Compile Include="Repository\IProductRepository.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
