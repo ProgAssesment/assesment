@@ -106,10 +106,6 @@ namespace AppieApplication.ViewModel
                 repo.AddToShoppingList(b);
             }
 
-
-
-            //var brands = repoBrand.GetAll().Where(x => x.id.Equals(r.)).First();
-            //repoBrand.AddToShoppingList(brands);
         }
 
 
