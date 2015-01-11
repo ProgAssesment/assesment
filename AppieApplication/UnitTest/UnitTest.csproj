@@ -68,6 +68,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="BrandListViewModelTest.cs" />
     <Compile Include="CatagoryListViewModelTest.cs" />
     <Compile Include="DiscountListViewModelTest.cs" />
     <Compile Include="ProductListViewModelTest.cs" />

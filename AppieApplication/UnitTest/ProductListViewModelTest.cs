@@ -63,6 +63,7 @@ namespace UnitTest
             Assert.IsNotNull(p);
             Assert.IsInstanceOfType(p, typeof(Product));
             Assert.AreEqual(4, p.Id);
+            Assert.AreEqual("Banaan", p.Name);
         }
 
         [TestMethod]

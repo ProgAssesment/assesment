@@ -17,7 +17,7 @@ namespace AppieApplication.ViewModel
     {
 
         private IBrandRepository repo;
-        private RecipeRepository recipo;
+        private IRecipeRepository recipo;
 
         private BrandViewModel selectedBrand;
 
@@ -46,8 +46,7 @@ namespace AppieApplication.ViewModel
         public BrandListViewModel(IBrandRepository repo)
         {
             //dependency injecteren
-            recipo = new RecipeRepository();
-            repo = new BrandRepository();
+            //this.recipo = recipo;
 
             this.repo = repo;
             var brandList = repo.GetAll().Select(b => new BrandViewModel(b));
