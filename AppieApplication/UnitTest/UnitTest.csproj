@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="CatagoryListViewModelTest.cs" />
     <Compile Include="DiscountListViewModelTest.cs" />
+    <Compile Include="ProductListViewModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShoppingListViewModelTest.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
