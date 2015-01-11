@@ -82,6 +82,7 @@ namespace AppieApplication.ViewModel
         private void showDiscountsWindow()
         {
             discountsWindow = new DiscountsWindow();
+            Messenger.Default.Send(new NotificationMessage<int>(0, "refreshDiscounts"));
             discountsWindow.Show();
         }
 

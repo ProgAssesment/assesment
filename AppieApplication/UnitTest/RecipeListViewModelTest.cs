@@ -41,7 +41,7 @@ namespace UnitTest
             });
 
             mockRecipeRepo = moq.Object;
-            cvm = new RecipeListViewModel(moq.Object);
+           // cvm = new RecipeListViewModel(moq.Object);
         }
 
         [TestMethod]

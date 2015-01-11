@@ -17,7 +17,9 @@ namespace AppieApplication.ViewModel
         private BrandWindow brandsWindow;
 
         private IRecipeRepository repo;
-        private IBrandRepository repoBrand;
+
+        //FOR TEST
+         private IBrandRepository repoBrand;
 
         private RecipeViewModel _selectedRecipe;
 
@@ -53,16 +55,23 @@ namespace AppieApplication.ViewModel
         public ICommand OpenIngredientsWindowCommand { get; set; }
         public ICommand UpdateRecipeCommand { get; set; }
 
-        public RecipeListViewModel(IRecipeRepository repo, IBrandRepository repoBrand)
-        {
-          
+          public RecipeListViewModel(IRecipeRepository repo, IBrandRepository repoBrand)
+         {
+
+        //FOR TEST
+      //  public RecipeListViewModel(IRecipeRepository repo)
+       // {
+
             this.repo = repo;
-           this.repoBrand = repoBrand;
+
+            //FOR TEST
+               this.repoBrand = repoBrand;
 
             var recipeList = repo.GetAll().Select(r => new RecipeViewModel(r));
             Recipes = new ObservableCollection<RecipeViewModel>(recipeList);
 
-            brandsWindow = new BrandWindow();
+            //FOR TEST
+             brandsWindow = new BrandWindow();
 
             AddRecipeCommand = new RelayCommand(AddRecipe, CanAddRecipe);
             DeleteRecipeCommand = new RelayCommand(DeleteRecipe, CanDeleteRecipe);
@@ -85,7 +94,7 @@ namespace AppieApplication.ViewModel
 
         public void OpenIngredientsWindow()
         {
-           brandsWindow = new BrandWindow();
+            brandsWindow = new BrandWindow();
             Messenger.Default.Send(new NotificationMessage<int>(SelectedRecipe.Id, "recipe"));
             brandsWindow.Show();
         }
@@ -106,10 +115,6 @@ namespace AppieApplication.ViewModel
                 repo.AddToShoppingList(b);
             }
 
-
-
-            var brands = repoBrand.GetAll().Where(x => x.id.Equals(r)).First();
-            repoBrand.AddToShoppingList(brands);
         }
 
 
@@ -124,6 +129,7 @@ namespace AppieApplication.ViewModel
 
             repo.Create(r);
 
+            //FOR TEST
             rvm.Id = repo.GetByName(r.Name).id;
 
             Recipes.Add(rvm);
@@ -138,7 +144,12 @@ namespace AppieApplication.ViewModel
 
         public void UpdateRecipe()
         {
+            //FOR TEST
             Recipe r = repo.Get(SelectedRecipe.Id);
+
+            //FOR TEST
+            //Recipe r = repo.Get(1);
+
             r.Name = SelectedRecipe.Name;
 
             repo.Edit(r);
